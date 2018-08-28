@@ -1,0 +1,30 @@
+.sidebar {
+	-fx-background-color: #333645;
+}
+
+.icons {
+    -fx-fill: #7C8184;
+}
+
+.btns {
+    -fx-background-color: transparent;
+}
+
+.btns:hover {
+    -fx-background-color: #202332;
+    -fx-text-fill: #fff;
+}
+
+.lbl {
+    -fx-text-fill: #017529;
+}
+
+.lbl-sidebar {
+    -fx-text-fill: #8a8181;
+}
+
+.btnsjfx {
+    -fx-background-color: #03c67a;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 0;
+}
