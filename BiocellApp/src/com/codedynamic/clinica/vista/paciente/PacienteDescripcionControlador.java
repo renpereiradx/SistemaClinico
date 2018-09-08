@@ -1,7 +1,5 @@
 package com.codedynamic.clinica.vista.paciente;
 
-import java.util.List;
-
 import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLPaciente;
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
