@@ -24,7 +24,8 @@
 }
 
 .btnsjfx {
-    -fx-background-color: #03c67a;
-    -fx-text-fill: #fff;
+    /* -fx-background-color: #03c67a; */
+    -fx-background-color: #333645;
+    -fx-text-fill: #d3d2d2;
     -fx-background-radius: 0;
 }
