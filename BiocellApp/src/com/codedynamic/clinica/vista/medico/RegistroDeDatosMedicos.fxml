@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -55,18 +56,18 @@
             </Pane>
          </children>
       </HBox>
-      <HBox layoutX="14.0" layoutY="59.0" spacing="57.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <HBox layoutX="14.0" layoutY="54.0" prefHeight="52.0" prefWidth="797.0" spacing="57.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <children>
             <JFXTextArea prefHeight="43.0" prefWidth="370.0" promptText="Antecedente de Enfermedad Actual" />
             <JFXTextArea prefHeight="43.0" prefWidth="370.0" promptText="Medicamentos que toma actualmente" />
          </children>
       </HBox>
-      <Label layoutX="14.0" layoutY="119.0" text="Habitos">
+      <Label layoutX="14.0" layoutY="122.0" text="Habitos">
          <font>
             <Font name="Segoe UI Bold" size="17.0" />
          </font>
       </Label>
-      <VBox layoutX="14.0" layoutY="147.0" spacing="10.0">
+      <VBox layoutX="14.0" layoutY="150.0" spacing="10.0">
          <children>
             <HBox spacing="57.0">
                <children>
@@ -99,12 +100,12 @@
             </HBox>
          </children>
       </VBox>
-      <Label layoutX="14.0" layoutY="330.0" text="Examen Fisico">
+      <Label layoutX="14.0" layoutY="332.0" text="Examen Fisico">
          <font>
             <Font name="Segoe UI Bold" size="17.0" />
          </font>
       </Label>
-      <VBox layoutX="14.0" layoutY="357.0" spacing="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+      <VBox layoutX="14.0" layoutY="358.0" spacing="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <children>
             <GridPane alignment="CENTER_LEFT">
               <columnConstraints>
@@ -143,7 +144,7 @@
                               <Insets top="7.0" />
                            </HBox.margin>
                         </Label>
-                        <JFXTextField prefWidth="70.0" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
                         <Label text="Kg">
                            <HBox.margin>
                               <Insets top="7.0" />
@@ -154,43 +155,102 @@
                   <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2">
                      <children>
                         <Label text="Altura:" />
-                        <JFXTextField prefWidth="70.0" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
                         <Label text="m" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
                      <children>
                         <Label text="FC:" />
-                        <JFXTextField prefWidth="70.0" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
                         <Label text="bpm" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <Label text="FR:" />
-                        <JFXTextField prefWidth="70.0" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
                         <Label text="mrpm" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
                         <Label text="T. Axilar:" />
-                        <JFXTextField prefWidth="70.0" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="Talla:" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="IMC:" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <Label text="CA:" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="Glicemia:" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                        <Label text="mg/dl" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <Label text="SPO2:" />
+                        <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                        <Label text="\%" />
                      </children>
                   </HBox>
                </children>
             </GridPane>
-            <GridPane>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
          </children>
       </VBox>
+      <Label layoutX="14.0" layoutY="490.0" text="I.P.P.A.">
+         <font>
+            <Font name="Segoe UI Bold" size="17.0" />
+         </font>
+      </Label>
+      <HBox layoutX="14.0" layoutY="512.0" spacing="20.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+         <children>
+            <VBox prefHeight="133.0" prefWidth="611.0" spacing="15.0">
+               <children>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="169.0" spacing="15.0">
+               <children>
+                  <JFXButton prefHeight="55.0" prefWidth="90.0" styleClass="btnsjfx" text="Cancelar" />
+                  <JFXButton layoutX="63.0" layoutY="97.0" prefHeight="55.0" prefWidth="90.0" styleClass="btnsjfx" text="Editar" />
+                  <JFXButton layoutX="63.0" layoutY="125.0" prefHeight="55.0" prefWidth="90.0" styleClass="btnsjfx" text="Aceptar" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
