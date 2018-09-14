@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="650.0" prefWidth="800.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="650.0" prefWidth="800.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="500.0" prefWidth="740.0" style="-fx-background-color: #333645;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -28,10 +30,22 @@
             </TableView>
          </children>
       </AnchorPane>
-      <JFXButton buttonType="RAISED" layoutX="176.0" layoutY="545.0" prefHeight="47.0" prefWidth="448.0" styleClass="btnsjfx" text="ATENDER" textFill="#f5f3f3">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </JFXButton>
+      <HBox alignment="CENTER_LEFT" layoutX="181.0" layoutY="542.0" spacing="25.0">
+         <children>
+            <JFXTextField prefHeight="27.0" prefWidth="242.0" promptText="Motivo de Consulta">
+               <font>
+                  <Font name="Segoe UI Semilight" size="13.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton prefHeight="47.0" prefWidth="133.0" styleClass="btnsjfx" text="ATENDER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>
