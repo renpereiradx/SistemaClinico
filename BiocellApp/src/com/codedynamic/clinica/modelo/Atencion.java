@@ -1,16 +1,16 @@
 package com.codedynamic.clinica.modelo;
 
 public class Atencion {
-	private int idAtencion;
+	private short idAtencion;
 	private Turno turno;
-	private int idTipoAtencion;
+	private short idTipoAtencion;
 	private Usuario usuario;
 	private String motivo;
 	
-	public int getIdAtencion() {
+	public short getIdAtencion() {
 		return idAtencion;
 	}
-	public void setIdAtencion(int idAtencion) {
+	public void setIdAtencion(short idAtencion) {
 		this.idAtencion = idAtencion;
 	}
 	public Turno getTurno() {
@@ -19,10 +19,10 @@ public class Atencion {
 	public void setTurno(Turno turno) {
 		this.turno = turno;
 	}
-	public int getIdTipoAtencion() {
+	public short getIdTipoAtencion() {
 		return idTipoAtencion;
 	}
-	public void setIdTipoAtencion(int idTipoAtencion) {
+	public void setIdTipoAtencion(short idTipoAtencion) {
 		this.idTipoAtencion = idTipoAtencion;
 	}
 	public Usuario getUsuario() {
