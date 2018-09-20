@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="890.0" prefWidth="1400.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="200.0" layoutY="24.0" prefHeight="645.0" prefWidth="1000.0" style="-fx-background-color: #333645;">
+      <AnchorPane layoutX="200.0" layoutY="24.0" prefHeight="645.0" prefWidth="1000.0" style="-fx-background-color: #333645;" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
          <children>
             <Label layoutX="439.0" layoutY="14.0" text="TURNOS" textFill="#d3d2d2">
                <font>
@@ -21,11 +21,13 @@
             </Label>
             <TableView layoutY="65.0" prefHeight="571.0" prefWidth="1340.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
               <columns>
-                <TableColumn prefWidth="59.0" text="Nro" />
-                <TableColumn prefWidth="200.0" text="NOMBRE" />
-                  <TableColumn prefWidth="200.0" text="APELLIDO" />
-                  <TableColumn prefWidth="400.0" text="DESCRIPCION" />
-                  <TableColumn prefWidth="139.0" text="ESTADO" />
+                <TableColumn prefWidth="40.0" text="Nro" />
+                <TableColumn prefWidth="170.0" text="NOMBRE" />
+                  <TableColumn prefWidth="170.0" text="APELLIDO" />
+                  <TableColumn prefWidth="90.0" text="Hora" />
+                  <TableColumn prefWidth="90.0" text="Fecha" />
+                  <TableColumn prefWidth="350.0" text="DESCRIPCION" />
+                  <TableColumn prefWidth="188.0" text="ESTADO" />
               </columns>
             </TableView>
          </children>
