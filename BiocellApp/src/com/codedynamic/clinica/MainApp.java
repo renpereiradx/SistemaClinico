@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import com.codedynamic.clinica.dao.postgresql.Autenticacion;
 import com.codedynamic.clinica.modelo.*;
 import com.codedynamic.clinica.vista.*;
+import com.codedynamic.clinica.vista.medico.MedicoMenuControlador;
+import com.codedynamic.clinica.vista.medico.MedicoPrincipalControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteDescripcionControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteMenuLeftControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteRegistroControlador;
@@ -384,6 +386,31 @@ public class MainApp extends Application {
 			controlador.setStage(dialogoStage);
 			controlador.setTurno(turno);
 			dialogoStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarMedicoPrincipal() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/medico/MedicoPrincipal.fxml"));
+			AnchorPane medicoPane = loader.load();
+			contenedorPrincipal.setCenter(medicoPane);
+			MedicoPrincipalControlador controlador = loader.getController();
+			controlador.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarMedicoMenu() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/medico/MedicoMenu.fxml"));
+			AnchorPane menuPane = loader.load();
+			contenedorPrincipal.setLeft(menuPane);
+			MedicoMenuControlador controlador = loader.getController();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
