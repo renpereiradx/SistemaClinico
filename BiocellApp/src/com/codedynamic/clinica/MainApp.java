@@ -398,7 +398,7 @@ public class MainApp extends Application {
 			AnchorPane medicoPane = loader.load();
 			contenedorPrincipal.setCenter(medicoPane);
 			MedicoPrincipalControlador controlador = loader.getController();
-			controlador.setMainApp(this);
+			//controlador.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -410,7 +410,7 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("vista/medico/MedicoMenu.fxml"));
 			AnchorPane menuPane = loader.load();
 			contenedorPrincipal.setLeft(menuPane);
-			MedicoMenuControlador controlador = loader.getController();
+			//MedicoMenuControlador controlador = loader.getController();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
