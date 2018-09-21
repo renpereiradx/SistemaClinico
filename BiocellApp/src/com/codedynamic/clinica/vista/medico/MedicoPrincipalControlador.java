@@ -6,6 +6,8 @@ import java.time.LocalTime;
 import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Turno;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -33,6 +35,9 @@ public class MedicoPrincipalControlador {
 	private TableColumn<Turno, String> descripcionTableColumn;
 	@FXML
 	private TableColumn<Turno, String> estadoTableColumn;
+	@FXML
+	private JFXTextField motivoField;
+	
 	
 	private MainApp mainApp;
 	private PSQLTurno psqlTurno;
@@ -71,6 +76,8 @@ public class MedicoPrincipalControlador {
             }
             turnoTableView.setItems(turnos);
     }
+
+    
     
     private void limpiarTablaTurnos() {
         turnoTableView.getItems().clear();
