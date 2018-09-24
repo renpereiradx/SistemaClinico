@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
+import com.codedynamic.clinica.modelo.Atencion;
 import com.codedynamic.clinica.modelo.Turno;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
@@ -41,6 +42,7 @@ public class MedicoPrincipalControlador {
 	
 	private MainApp mainApp;
 	private PSQLTurno psqlTurno;
+	private Atencion atencion;
 	private ObservableList<Turno> turnos = FXCollections.observableArrayList();
 	
 	public void setMainApp(MainApp mainApp) {
@@ -77,9 +79,19 @@ public class MedicoPrincipalControlador {
             turnoTableView.setItems(turnos);
     }
 
-    
+    @FXML
+    private void atenderTurno() {
+    	atencion = new Atencion();
+    	atencion.setMotivo(motivoField.getText());
+    	atencion.setUsuario(mainApp.getUsuarioLoggeado());
+    	if (mainApp.getUsuarioLoggeado().getCodigo_perfil() == 2) {
+    		atencion.setIdTipoAtencion((short)1);			
+		}
+    	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
+    }
     
     private void limpiarTablaTurnos() {
         turnoTableView.getItems().clear();
     }
+    
 }
