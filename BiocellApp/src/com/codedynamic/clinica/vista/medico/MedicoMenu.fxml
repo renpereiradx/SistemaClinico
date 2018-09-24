@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.paciente.PacienteMenuLeftControlador">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.medico.MedicoMenuControlador">
    <children>
       <VBox prefHeight="798.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@Estilos.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,7 +20,7 @@
             </Label>
             <VBox prefWidth="250.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="90.0" onMouseClicked="#mostrarHome" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="90.0" onMouseClicked="#mostrarPaginaPrincipal" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="HOME" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Principal">
@@ -36,10 +36,10 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" onMouseClicked="#mostrarDescripcion" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#mostrarMedicoPrincipal" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="CALENDAR" size="2em" styleClass="icons" />
-                        <Label styleClass="lbl-sidebar" text="Turnos">
+                        <Label onMouseClicked="#mostrarMedicoPrincipal" styleClass="lbl-sidebar" text="Turnos">
                            <font>
                               <Font name="Calibri Bold" size="23.0" />
                            </font>
@@ -55,7 +55,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" onMouseClicked="#mostrarAntecedentes" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Antecedentes">
