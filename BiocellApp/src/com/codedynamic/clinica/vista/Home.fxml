@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.HomeControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.HomeControlador">
    <center>
       <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
          <children>
@@ -47,7 +47,7 @@
                                     <DropShadow blurType="TWO_PASS_BOX" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="55.0" layoutX="300.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #23de95;" text="MEDICOS" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="55.0" layoutX="300.0" layoutY="10.0" onAction="#seccionMedicos" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #23de95;" text="MEDICOS" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="USER_MD" size="8em" />
                                  </graphic>
