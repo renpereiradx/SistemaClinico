@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -32,13 +33,14 @@
             </TableView>
          </children>
       </AnchorPane>
-      <HBox alignment="TOP_CENTER" layoutX="446.0" layoutY="719.0" spacing="25.0">
+      <HBox alignment="CENTER" layoutX="359.0" layoutY="719.0" spacing="25.0">
          <children>
             <JFXTextField fx:id="motivoField" alignment="CENTER" prefHeight="40.0" prefWidth="350.0" promptText="Motivo de Consulta">
                <font>
                   <Font name="Segoe UI Semilight" size="15.0" />
                </font>
             </JFXTextField>
+            <JFXComboBox prefWidth="150.0" />
             <JFXButton prefHeight="47.0" prefWidth="133.0" styleClass="btnsjfx" text="ATENDER">
                <HBox.margin>
                   <Insets />
