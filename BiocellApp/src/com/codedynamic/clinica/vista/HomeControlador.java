@@ -36,4 +36,10 @@ public class HomeControlador {
         mainApp.mostrarTurnoMenuLeft();
         mainApp.mostrarTurnoPrincipal();
     }
+    
+    @FXML private void seccionMedicos() {
+    	mainApp.getContenedorPrincipal().setCenter(null);
+    	mainApp.mostrarMedicoPrincipal();
+    	mainApp.mostrarMedicoMenu();
+    }
 }
