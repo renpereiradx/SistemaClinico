@@ -8,6 +8,7 @@ import com.codedynamic.clinica.modelo.*;
 import com.codedynamic.clinica.vista.*;
 import com.codedynamic.clinica.vista.medico.MedicoMenuControlador;
 import com.codedynamic.clinica.vista.medico.MedicoPrincipalControlador;
+import com.codedynamic.clinica.vista.medico.RegistroMedicosControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteDescripcionControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteMenuLeftControlador;
 import com.codedynamic.clinica.vista.paciente.PacienteRegistroControlador;
@@ -413,6 +414,22 @@ public class MainApp extends Application {
 			MedicoMenuControlador controlador = loader.getController();
 			controlador.setMainApp(this);
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarRegistroDatosMedicos(Atencion atencion) {
+    	Atencion atencionTemp = null;
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/medico/RegistroDeDatosMedicos.fxml"));
+			AnchorPane registroPane = loader.load();
+			contenedorPrincipal.setCenter(registroPane);
+			RegistroMedicosControlador controlador = loader.getController();
+			controlador.setMainApp(this);
+			controlador.setAtencion(atencionTemp);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
