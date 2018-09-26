@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import com.codedynamic.clinica.MainApp;
+import com.codedynamic.clinica.dao.postgresql.PSQLAtencion;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Atencion;
 import com.codedynamic.clinica.modelo.Turno;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -38,12 +40,15 @@ public class MedicoPrincipalControlador {
 	private TableColumn<Turno, String> estadoTableColumn;
 	@FXML
 	private JFXTextField motivoField;
+	@FXML
+	private JFXComboBox<String> tipoAtencioComboBox;
 	
 	
 	private MainApp mainApp;
 	private PSQLTurno psqlTurno;
 	private Atencion atencion;
 	private ObservableList<Turno> turnos = FXCollections.observableArrayList();
+	private ObservableList<String> listaTipoAtenciones = FXCollections.observableArrayList();
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
@@ -81,13 +86,25 @@ public class MedicoPrincipalControlador {
 
     @FXML
     private void atenderTurno() {
+    	PSQLAtencion psqlAtencion = new PSQLAtencion();
+    	listaTipoAtenciones.addAll("MEDICO", "ESTETICA", "ENFERMERIA");
+    	tipoAtencioComboBox = new JFXComboBox<>(listaTipoAtenciones);
     	atencion = new Atencion();
-    	atencion.setMotivo(motivoField.getText());
-    	atencion.setUsuario(mainApp.getUsuarioLoggeado());
-    	if (mainApp.getUsuarioLoggeado().getCodigo_perfil() == 2) {
-    		atencion.setIdTipoAtencion((short)1);			
+    	if (motivoField.getText().length() > 0) {
+			atencion.setMotivo(motivoField.getText());
+		} else {
+			atencion.setMotivo("No especificado");
+		}
+		atencion.setUsuario(mainApp.getUsuarioLoggeado());
+    	if (tipoAtencioComboBox.getValue().equals("MEDICO")) {
+			atencion.setIdTipoAtencion((short)1);
 		}
     	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
+    	if (atencion != null) {
+			psqlAtencion.insertar(atencion);
+			mainApp.getContenedorPrincipal().setCenter(null);
+			mainApp.mostrarRegistroDatosMedicos(atencion);
+		}
     }
     
     private void limpiarTablaTurnos() {
