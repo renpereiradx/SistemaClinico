@@ -4,6 +4,7 @@ public class Anamnesis {
 	private short idAnamnesis;
 	private String antecedenteEnfermedad;
 	private String medicamentoActual;
+	private Paciente paciente;
 		
 	public Anamnesis() {
 		super();
@@ -39,4 +40,13 @@ public class Anamnesis {
 	public void setMedicamentoActual(String medicamentoActual) {
 		this.medicamentoActual = medicamentoActual;
 	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+	
 }
