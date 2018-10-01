@@ -429,7 +429,6 @@ public class MainApp extends Application {
 			controlador.setMainApp(this);
 			controlador.setAtencion(atencionTemp);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
     }
