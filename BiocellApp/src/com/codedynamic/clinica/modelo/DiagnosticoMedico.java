@@ -5,15 +5,19 @@ public class DiagnosticoMedico {
 	private String detalle;
 	private String conducta;
 	private Paciente paciente;
+	private String indicacion;
+	private String tratamiento;
 	
 	public DiagnosticoMedico() {}
 
-	public DiagnosticoMedico(short idDM, String detalle, String conducta, Paciente paciente) {
+	public DiagnosticoMedico(short idDM, String detalle, String conducta, Paciente paciente, String indicacion, String tratamiento) {
 		super();
 		this.idDM = idDM;
 		this.detalle = detalle;
 		this.conducta = conducta;
 		this.paciente = paciente;
+		this.indicacion = indicacion;
+		this.tratamiento = tratamiento;
 	}
 
 	public short getIdDM() {
@@ -46,5 +50,21 @@ public class DiagnosticoMedico {
 
 	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
+	}
+
+	public String getIndicacion() {
+		return indicacion;
+	}
+
+	public void setIndicacion(String indicacion) {
+		this.indicacion = indicacion;
+	}
+
+	public String getTratamiento() {
+		return tratamiento;
+	}
+
+	public void setTratamiento(String tratamiento) {
+		this.tratamiento = tratamiento;
 	}
 }
