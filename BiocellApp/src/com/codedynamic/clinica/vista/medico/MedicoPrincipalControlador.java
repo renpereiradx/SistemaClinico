@@ -8,12 +8,10 @@ import com.codedynamic.clinica.dao.postgresql.PSQLAtencion;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Atencion;
 import com.codedynamic.clinica.modelo.Turno;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,15 +46,11 @@ public class MedicoPrincipalControlador {
 	private PSQLTurno psqlTurno;
 	private Atencion atencion;
 	private ObservableList<Turno> turnos = FXCollections.observableArrayList();
-	private ObservableList<String> listaTipoAtenciones = FXCollections.observableArrayList();
+	private ObservableList<String> listaTipoAtenciones = FXCollections.observableArrayList("MEDICO", "ESTETICA", "ENFERMERIA");
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-    
-    /* public ObservableList<Turno> getTurnos() {
-        return turnos;
-    } */
     
     @FXML
     private void initialize() {
@@ -68,6 +62,7 @@ public class MedicoPrincipalControlador {
         descripcionTableColumn.setCellValueFactory(datoCelda -> new ReadOnlyStringWrapper(datoCelda.getValue().getDescripcion()));
         estadoTableColumn.setCellValueFactory(datoCelda -> datoCelda.getValue().estadoProperty());
         mostrarTurnosHoy();
+        tipoAtencioComboBox.getItems().addAll(listaTipoAtenciones);
     }
     
     @FXML
@@ -87,8 +82,6 @@ public class MedicoPrincipalControlador {
     @FXML
     private void atenderTurno() {
     	PSQLAtencion psqlAtencion = new PSQLAtencion();
-    	listaTipoAtenciones.addAll("MEDICO", "ESTETICA", "ENFERMERIA");
-    	tipoAtencioComboBox = new JFXComboBox<>(listaTipoAtenciones);
     	atencion = new Atencion();
     	if (motivoField.getText().length() > 0) {
 			atencion.setMotivo(motivoField.getText());
