@@ -399,7 +399,7 @@ public class MainApp extends Application {
 			AnchorPane medicoPane = loader.load();
 			contenedorPrincipal.setCenter(medicoPane);
 			MedicoPrincipalControlador controlador = loader.getController();
-			//controlador.setMainApp(this);
+			controlador.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -419,7 +419,6 @@ public class MainApp extends Application {
     }
     
     public void mostrarRegistroDatosMedicos(Atencion atencion) {
-    	Atencion atencionTemp = null;
     	try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("vista/medico/RegistroDeDatosMedicos.fxml"));
@@ -427,7 +426,7 @@ public class MainApp extends Application {
 			contenedorPrincipal.setCenter(registroPane);
 			RegistroMedicosControlador controlador = loader.getController();
 			controlador.setMainApp(this);
-			controlador.setAtencion(atencionTemp);
+			controlador.setAtencion(atencion);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

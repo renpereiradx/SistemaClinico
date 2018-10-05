@@ -15,8 +15,11 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.StageStyle;
 
 public class MedicoPrincipalControlador {
 	
@@ -83,25 +86,34 @@ public class MedicoPrincipalControlador {
     private void atenderTurno() {
     	PSQLAtencion psqlAtencion = new PSQLAtencion();
     	atencion = new Atencion();
+    	int selectIndex = turnoTableView.getSelectionModel().getSelectedIndex();
     	if (motivoField.getText().length() > 0) {
 			atencion.setMotivo(motivoField.getText());
 		} else {
 			atencion.setMotivo("No especificado");
 		}
 		atencion.setUsuario(mainApp.getUsuarioLoggeado());
-    	if (tipoAtencioComboBox.getValue().equals("MEDICO")) {
-			atencion.setIdTipoAtencion((short)1);
+    	if (tipoAtencioComboBox.getValue() != null) {
+			if (tipoAtencioComboBox.getValue().equals("MEDICO")) {
+				atencion.setIdTipoAtencion((short) 1);
+			} 
 		}
-    	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
-    	if (atencion != null) {
-			psqlAtencion.insertar(atencion);
+		if (atencion != null && selectIndex >= 0) {
+        	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
+    		psqlAtencion.insertar(atencion);
 			mainApp.getContenedorPrincipal().setCenter(null);
 			mainApp.mostrarRegistroDatosMedicos(atencion);
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("ERROR EN REGISTRO");
+			alert.setContentText("No se pudo registrar ningun dato, favor asegurese de completar los campos y seleccionar un Paciente en la tabla TURNOS");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
 		}
     }
     
     private void limpiarTablaTurnos() {
         turnoTableView.getItems().clear();
     }
-    
 }

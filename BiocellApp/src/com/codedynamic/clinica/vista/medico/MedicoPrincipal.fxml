@@ -44,7 +44,7 @@
                <HBox.margin>
                   <Insets top="14.0" />
                </HBox.margin></JFXComboBox>
-            <JFXButton prefHeight="47.0" prefWidth="133.0" styleClass="btnsjfx" text="ATENDER">
+            <JFXButton onAction="#atenderTurno" prefHeight="47.0" prefWidth="133.0" styleClass="btnsjfx" text="ATENDER">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
