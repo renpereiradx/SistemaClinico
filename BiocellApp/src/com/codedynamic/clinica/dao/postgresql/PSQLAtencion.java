@@ -11,7 +11,7 @@ import com.codedynamic.clinica.modelo.Atencion;
 
 public class PSQLAtencion implements AtencionDAO {
 
-	private final String INSERTAR = "INSERT INTO atenciones(id_turno, id_tatencion, id_usuario, motivo) VALUES(?, ?, ?, ?)";
+	private final String INSERTAR = "INSERT INTO atenciones(id_turno, id_tatencion, id_usuario, motivo) VALUES(?, ?, ?, ?) RETURNING id_atencion";
 	private final String MODIFICAR = "UPDATE atenciones SET id_turno = ?, id_tatencion = ?, id_usuario = ?, motivo = ? WHERE id_atencion = ?";
 	private final String ELIMINAR = "DELETE FROM atenciones WHERE id_atencion = ?";
 	private final String OBTENERPORID = "SELECT id_atencion, id_turno, id_tatencion, id_usuario, motivo FROM atenciones WHERE id_atencion = ?";
@@ -29,7 +29,10 @@ public class PSQLAtencion implements AtencionDAO {
 			sentencia.setShort(2, o.getIdTipoAtencion());
 			sentencia.setShort(3, o.getUsuario().getId());
 			sentencia.setString(4, o.getMotivo());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdAtencion(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se pudo insertar ningun Registro");
 			}
 		} catch (SQLException e) {

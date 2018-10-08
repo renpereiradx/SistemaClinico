@@ -38,4 +38,9 @@ public class Atencion {
 		this.motivo = motivo;
 	}
 	
+	@Override
+	public String toString() {
+		return "Atencion [idAtencion=" + idAtencion + ", turno=" + turno + ", idTipoAtencion=" + idTipoAtencion
+				+ ", usuario=" + usuario + ", motivo=" + motivo + "]";
+	}
 }
