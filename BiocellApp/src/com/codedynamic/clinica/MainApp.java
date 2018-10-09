@@ -6,6 +6,7 @@ import javafx.stage.Stage;
 import com.codedynamic.clinica.dao.postgresql.Autenticacion;
 import com.codedynamic.clinica.modelo.*;
 import com.codedynamic.clinica.vista.*;
+import com.codedynamic.clinica.vista.medico.IndicacionesMedicasControlador;
 import com.codedynamic.clinica.vista.medico.MedicoMenuControlador;
 import com.codedynamic.clinica.vista.medico.MedicoPrincipalControlador;
 import com.codedynamic.clinica.vista.medico.RegistroMedicosControlador;
@@ -418,7 +419,7 @@ public class MainApp extends Application {
 		}
     }
     
-    public void mostrarRegistroDatosMedicos(Atencion atencion) {
+    public void mostrarRegistroDatosMedicos(Atencion atencion, Paciente paciente) {
     	try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(MainApp.class.getResource("vista/medico/RegistroDeDatosMedicos.fxml"));
@@ -427,6 +428,20 @@ public class MainApp extends Application {
 			RegistroMedicosControlador controlador = loader.getController();
 			controlador.setMainApp(this);
 			controlador.setAtencion(atencion);
+			controlador.setPaciente(paciente);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarIndicacionesMedicas(DetalleAtencion detalleAtencion, Paciente paciente) {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/medico/IndicacionesMedicas.fxml"));
+			AnchorPane indicacionesPane = loader.load();
+			contenedorPrincipal.setCenter(indicacionesPane);
+			IndicacionesMedicasControlador controlador = loader.getController();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

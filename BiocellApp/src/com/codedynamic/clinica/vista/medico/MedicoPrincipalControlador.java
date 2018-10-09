@@ -7,6 +7,7 @@ import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLAtencion;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Atencion;
+import com.codedynamic.clinica.modelo.Paciente;
 import com.codedynamic.clinica.modelo.Turno;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -86,6 +87,7 @@ public class MedicoPrincipalControlador {
     private void atenderTurno() {
     	PSQLAtencion psqlAtencion = new PSQLAtencion();
     	atencion = new Atencion();
+    	Paciente pacienteTemp;
     	int selectIndex = turnoTableView.getSelectionModel().getSelectedIndex();
     	if (motivoField.getText().length() > 0) {
 			atencion.setMotivo(motivoField.getText());
@@ -100,9 +102,10 @@ public class MedicoPrincipalControlador {
 		}
 		if (atencion != null && selectIndex >= 0) {
         	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
+        	pacienteTemp = turnoTableView.getSelectionModel().getSelectedItem().getPaciente();
     		psqlAtencion.insertar(atencion);
 			mainApp.getContenedorPrincipal().setCenter(null);
-			mainApp.mostrarRegistroDatosMedicos(atencion);
+			mainApp.mostrarRegistroDatosMedicos(atencion, pacienteTemp);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
