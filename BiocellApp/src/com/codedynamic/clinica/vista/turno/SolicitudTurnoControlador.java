@@ -1,6 +1,5 @@
 package com.codedynamic.clinica.vista.turno;
 
-import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLPaciente;
 import com.codedynamic.clinica.modelo.Paciente;
 import com.codedynamic.clinica.modelo.Turno;
@@ -9,7 +8,6 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;

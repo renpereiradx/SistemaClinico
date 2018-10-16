@@ -2,28 +2,41 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTimePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.SolicitudTurnoControlador">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.SolicitudTurnoControlador">
    <children>
-      <Label layoutX="103.0" layoutY="17.0" text="Solicitar Turno" textFill="#03c67a">
+      <Label layoutX="254.0" layoutY="14.0" text="Solicitar Turno" textFill="#333645">
          <font>
             <Font name="Segoe UI Bold" size="29.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="pacienteJfxTextField" alignment="CENTER" focusColor="#03c67a" layoutX="50.0" layoutY="62.0" onKeyPressed="#pacienteTextFieldEvento" prefHeight="40.0" prefWidth="300.0" promptText="Buscar Paciente" />
-      <HBox layoutX="95.0" layoutY="292.0" spacing="30.0">
+      <VBox layoutX="50.0" layoutY="69.0" spacing="20.0">
          <children>
-            <JFXButton onAction="#selectAceptar" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Aceptar" textFill="#fcfcfc" />
-            <JFXButton onAction="#selectCancelar" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Cancelar" textFill="#fcfcfc" />
+            <JFXTextField fx:id="pacienteJfxTextField" alignment="CENTER" focusColor="#03c67a" onKeyPressed="#pacienteTextFieldEvento" prefHeight="40.0" prefWidth="300.0" promptText="Buscar Paciente" />
+            <JFXComboBox fx:id="pacienteComboBox" focusColor="#03c67a" prefHeight="40.0" prefWidth="300.0" />
+            <JFXTextField fx:id="descripcionTextField" alignment="CENTER" focusColor="#03c67a" prefHeight="40.0" prefWidth="300.0" promptText="Descripcion" />
+            <JFXTextField fx:id="turnoTextField" alignment="CENTER" focusColor="#03c67a" maxWidth="90.0" prefHeight="40.0" prefWidth="90.0" promptText="Numero" />
+         </children>
+      </VBox>
+      <HBox layoutX="229.0" layoutY="330.0" spacing="50.0">
+         <children>
+            <JFXButton onAction="#selectAceptar" prefHeight="50.0" prefWidth="100.0" styleClass="btnsjfx" text="Aceptar" textFill="#fcfcfc" />
+            <JFXButton onAction="#selectCancelar" prefHeight="50.0" prefWidth="100.0" styleClass="btnsjfx" text="Cancelar" textFill="#fcfcfc" />
          </children>
       </HBox>
-      <JFXComboBox fx:id="pacienteComboBox" focusColor="#03c67a" layoutX="54.0" layoutY="124.0" prefHeight="40.0" prefWidth="300.0" />
-      <JFXTextField fx:id="turnoTextField" alignment="CENTER" focusColor="#03c67a" layoutX="214.0" layoutY="236.0" prefHeight="40.0" prefWidth="90.0" promptText="Numero" />
-      <JFXTextField fx:id="descripcionTextField" alignment="CENTER" focusColor="#03c67a" layoutX="50.0" layoutY="178.0" prefHeight="40.0" prefWidth="300.0" promptText="Descripcion" />
+      <VBox layoutX="443.0" layoutY="121.0" spacing="50.0">
+         <children>
+            <JFXDatePicker defaultColor="#333645" />
+            <JFXTimePicker defaultColor="#333645" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
