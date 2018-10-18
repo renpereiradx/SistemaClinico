@@ -11,7 +11,7 @@ import com.codedynamic.clinica.modelo.ExamenFisico;
 
 public class PSQLExamenFisico implements ExamenFisicoDAO {
 	private final String INSERTAR = "INSERT INTO examenes_fisicos(pa, peso, altura, fc, fr, t_axilar, talla, imc, ca, glicemia, spo, detalle, id_paciente) "
-			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_efisico";
 	private final String MODIFICAR = "UPDATE examenes_fisicos SET pa = ?, peso = ?, altura = ? fc = ?, fr = ?, t_axilar = ?, talla = ?, imc = ?, ca = ?, "
 			+ "glicemia = ?, spo = ?, detalle = ?, id_paciente = ? WHERE id_efisico = ?";
 	private final String ELIMINAR = "DELETE FROM examenes_fisicos WHERE id_efisico = ?";
@@ -40,7 +40,10 @@ public class PSQLExamenFisico implements ExamenFisicoDAO {
 			sentencia.setString(11, o.getSpo());
 			sentencia.setString(12, o.getDetalle());
 			sentencia.setShort(13, o.getPaciente().getId_paciente());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdEFisico(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {

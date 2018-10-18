@@ -3,8 +3,12 @@ package com.codedynamic.clinica.vista.turno;
 import com.codedynamic.clinica.dao.postgresql.PSQLPaciente;
 import com.codedynamic.clinica.modelo.Paciente;
 import com.codedynamic.clinica.modelo.Turno;
+import com.codedynamic.clinica.utilidades.UtilidadFecha;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTimePicker;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,6 +22,8 @@ public class SolicitudTurnoControlador {
     @FXML private JFXComboBox<Paciente> pacienteComboBox;
     @FXML private JFXTextField turnoTextField;
     @FXML private JFXTextField descripcionTextField;
+    @FXML private JFXDatePicker fechaDatePicker;
+    @FXML private JFXTimePicker horaTimePicker;
 
     private PSQLPaciente psqlPaciente;
     private Turno turno;
@@ -43,9 +49,9 @@ public class SolicitudTurnoControlador {
         Paciente paciente = psqlPaciente.obtenerPorID(pacienteComboBox.getSelectionModel().getSelectedItem().getId_paciente());
         if (validarDatos()) {
             turno.setNumero(Integer.parseInt(turnoTextField.getText()));
-            turno.setFecha(LocalDate.now());
+            turno.setFecha(fechaDatePicker.getValue());
             turno.setPaciente(paciente);
-            turno.setHora(LocalTime.now());
+            turno.setHora(horaTimePicker.getValue());
             turno.setDescripcion(descripcionTextField.getText());
             okClicked = true;
             stage.close();
@@ -61,18 +67,17 @@ public class SolicitudTurnoControlador {
         psqlPaciente = new PSQLPaciente();
         ObservableList<Paciente> listaNombre = FXCollections.observableArrayList(psqlPaciente.listarBusqueda(pacienteJfxTextField.getText()));
         ObservableList<Paciente> listaApellido = FXCollections.observableArrayList(psqlPaciente.listarBusqApe(pacienteJfxTextField.getText()));
-        if (!listaNombre.isEmpty()) {
-            pacienteComboBox.setItems(listaNombre);
-            pacienteComboBox.show();
-            return true;
-        } else if (!listaApellido.isEmpty()) {
-            pacienteComboBox.setItems(listaApellido);
-            pacienteComboBox.show();
-            return true;
-        } else {
-            return false;
-        }
-
+		if (!listaNombre.isEmpty()) {
+			pacienteComboBox.setItems(listaNombre);
+			pacienteComboBox.show();
+			return true;
+		} else if (!listaApellido.isEmpty()) {
+			pacienteComboBox.setItems(listaApellido);
+			pacienteComboBox.show();
+			return true;
+		} else {
+			return false;
+		}
     }
 
     @FXML private void pacienteTextFieldEvento() {

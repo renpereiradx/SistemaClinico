@@ -34,8 +34,8 @@
       </HBox>
       <VBox layoutX="443.0" layoutY="121.0" spacing="50.0">
          <children>
-            <JFXDatePicker defaultColor="#333645" />
-            <JFXTimePicker defaultColor="#333645" />
+            <JFXDatePicker fx:id="fechaDatePicker" defaultColor="#333645" />
+            <JFXTimePicker fx:id="horaTimePicker" defaultColor="#333645" />
          </children>
       </VBox>
    </children>

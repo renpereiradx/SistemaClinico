@@ -14,7 +14,7 @@ import com.codedynamic.clinica.utilidades.UtilidadHora;
 public class PSQLDetalleAtencion implements DetalleAtencionDAO {
 
 	private final String INSERTAR = "INSERT INTO detalles_atenciones(id_atencion, id_usuario, id_anamnesis, id_hab, id_efisico, id_ppa, id_dm, "
-			+ "fecha, hora) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_da";
+			+ "fecha, hora) VALUES(?, ?, ?, ?, ?, ?, ?, to_date(?, 'DD-MM-YYYY'), to_timestamp(?, 'HH24:MI:SS')) RETURNING id_da";
 	private final String MODIFICAR = "UPDATE detalles_atenciones SET d_atencion = ?, id_usuario = ?, id_anamnesis = ?, id_hab = ?, id_efisico = ?, id_ppa = ?, "
 			+ "id_dm = ?, fecha = ?, hora = ? WHERE id_da = ?";
 	private final String ELIMINAR = "DELETE FROM detalles_atenciones WHERE id_da = ?";

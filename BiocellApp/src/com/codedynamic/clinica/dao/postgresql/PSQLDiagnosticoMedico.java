@@ -10,7 +10,7 @@ import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
 import com.codedynamic.clinica.modelo.DiagnosticoMedico;
 
 public class PSQLDiagnosticoMedico implements DiagnosticoMedicoDAO {
-	private final String INSERTAR = "INSERT INTO diagnostico_medico(detalle, id_paciente, conducta, indicacion, tratamientoa) VALUES(?, ?, ?, ?, ?)";
+	private final String INSERTAR = "INSERT INTO diagnostico_medico(detalle, id_paciente, conducta, indicacion, tratamiento) VALUES(?, ?, ?, ?, ?) RETURNING id_dm";
 	private final String MODIFICAR = "UPDATE diagnostico_medico SET detalle = ?, id_paciente = ?, conducta = ?, indicacion = ?, tratamiento = ? WHERE id_dm = ?";
 	private final String ELIMINAR = "DELETE FROM diagnostico_medico WHERE id_dm = ?";
 	private final String OBTENERPORID = "SELECT id_dm, detalle, id_paciente, conducta, indicacion, tratamiento FROM diagnostico_medico WHERE id_dm = ?";
@@ -29,7 +29,10 @@ public class PSQLDiagnosticoMedico implements DiagnosticoMedicoDAO {
 			sentencia.setString(3, o.getConducta());
 			sentencia.setString(4, o.getIndicacion());
 			sentencia.setString(5, o.getTratamiento());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdDM(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {

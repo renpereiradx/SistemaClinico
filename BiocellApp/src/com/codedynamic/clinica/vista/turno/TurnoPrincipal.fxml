@@ -29,7 +29,7 @@
             <TableColumn fx:id="pApellidoTableColumn" prefWidth="200.0" resizable="false" text="APELLIDO" />
             <TableColumn fx:id="horaTableColumn" prefWidth="87.0" resizable="false" text="HORA" />
             <TableColumn fx:id="fechaTableColumn" prefWidth="90.0" text="FECHA" />
-            <TableColumn prefWidth="510.0" text="DETALLE" />
+            <TableColumn fx:id="detalleTableColumn" prefWidth="510.0" text="DETALLE" />
             <TableColumn fx:id="estadoTableColumn" minWidth="0.0" prefWidth="161.0" text="ESTADO" />
         </columns>
       </TableView>
@@ -52,7 +52,7 @@
             </JFXButton>
          </children>
       </HBox>
-      <JFXButton alignment="CENTER" contentDisplay="TOP" layoutX="676.0" layoutY="737.0" onAction="#mostrarDescripcion" prefHeight="54.0" prefWidth="121.0" styleClass="btnsjfx" text="Ver Descripcion" textFill="WHITE">
+      <JFXButton alignment="CENTER" contentDisplay="TOP" layoutX="1229.0" layoutY="740.0" onAction="#mostrarDescripcion" prefHeight="54.0" prefWidth="121.0" styleClass="btnsjfx" text="Ver Descripcion" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="CLONE" size="1.9em" />
          </graphic>

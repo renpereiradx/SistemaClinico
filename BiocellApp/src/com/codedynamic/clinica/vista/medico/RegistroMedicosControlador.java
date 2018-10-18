@@ -5,6 +5,7 @@ import com.codedynamic.clinica.dao.postgresql.PSQLAnamnesis;
 import com.codedynamic.clinica.dao.postgresql.PSQLExamenFisico;
 import com.codedynamic.clinica.dao.postgresql.PSQLHabito;
 import com.codedynamic.clinica.dao.postgresql.PSQLIppa;
+import com.codedynamic.clinica.dao.postgresql.PSQLUsuario;
 import com.codedynamic.clinica.modelo.Anamnesis;
 import com.codedynamic.clinica.modelo.Atencion;
 import com.codedynamic.clinica.modelo.DetalleAtencion;
@@ -186,6 +187,7 @@ public class RegistroMedicosControlador {
 	@FXML
 	private void siguiente() {
 		if (validacion()) {
+			detalleAtencion.setUsuario(mainApp.getUsuarioLoggeado());
 			procesarAnamnesis();
 			procesarHabitos();
 			procesarExamenFisico();
@@ -195,24 +197,31 @@ public class RegistroMedicosControlador {
 		}
 	}
 	
+	@FXML
+	private void salir() {
+		mainApp.getContenedorPrincipal().setCenter(null);
+		mainApp.mostrarMedicoPrincipal();
+	}
+	
 	private boolean validacion() {
 		String error = "";
 		if (paTextField1.getText().length() == 0 || paTextField1.getText() == null) {
-			error += "Favor completar Presion Arterial\n";
+			error += "Presion Arterial\n";
 		}
 		if (fcTextField.getText() == null || fcTextField.getText().length() == 0) {
-			error += "Favor completar Frecuencia Cardiaca\n";
+			error += "Frecuencia Cardiaca\n";
 		}
 		if (spo2TextField.getText() == null || spo2TextField.getText().length() == 0) {
-			error += "Favor completar SP02\n";
+			error += "SP02\n";
 		}
 		if (error.length() == 0) {
 			return true;
 		} else {
-			Alert alerta = new Alert(AlertType.ERROR);
+			Alert alerta = new Alert(AlertType.INFORMATION);
 			alerta.setTitle("ERROR");
 			alerta.setHeaderText("Parametros Impresindibles");
 			alerta.setContentText("Favor completar los parametros indicados a continuacion\n" + error);
+			alerta.showAndWait();
 			return false;
 		}
 	}

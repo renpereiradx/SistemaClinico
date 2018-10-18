@@ -11,7 +11,7 @@ import com.codedynamic.clinica.modelo.Anamnesis;
 
 public class PSQLAnamnesis implements AnamnesisDAO {
 	
-	private final String INSERTAR = "INSERT INTO anamnesis(antecedente_enfermedad, medicamento_actual, id_paciente) VALUES(?, ?, ?)";
+	private final String INSERTAR = "INSERT INTO anamnesis(antecedente_enfermedad, medicamento_actual, id_paciente) VALUES(?, ?, ?) RETURNING id_anamnesis";
 	private final String MODIFICAR = "UPDATE anamnesis SET antecedente_enfermedad = ?, medicamento_actual = ?, id_paciente = ? WHERE id_anamnesis = ?";
 	private final String ELIMINAR = "DELETE FROM anamnesis WHERE id_anamnesis = ?";
 	private final String OBTENERPORID = "SELECT id_anamnesis, antecedente_enfermedad, medicamento_actual, id_paciente FROM anamnesis WHERE id_anamnesis = ?";
@@ -28,7 +28,10 @@ public class PSQLAnamnesis implements AnamnesisDAO {
 			sentencia.setString(1, o.getAntecedenteEnfermedad());
 			sentencia.setString(2, o.getMedicamentoActual());
 			sentencia.setShort(3, o.getPaciente().getId_paciente());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdAnamnesis(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {

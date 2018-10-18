@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.SolicitudTurnoFechaControlador">
+<AnchorPane prefHeight="200.0" prefWidth="400.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.SolicitudTurnoFechaControlador">
    <children>
-      <JFXDatePicker fx:id="fechaDatePicker" layoutX="50.0" layoutY="45.0" prefHeight="40.0" prefWidth="300.0" />
+      <JFXDatePicker fx:id="fechaDatePicker" defaultColor="#333645" layoutX="50.0" layoutY="45.0" prefHeight="40.0" prefWidth="300.0" />
       <HBox layoutX="90.0" layoutY="117.0" spacing="40.0">
          <children>
-            <JFXButton onAction="#selectAceptar" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Aceptar" textFill="WHITE" />
-            <JFXButton onAction="#selectCancelar" prefHeight="40.0" prefWidth="90.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Cancelar" textFill="WHITE" />
+            <JFXButton onAction="#selectAceptar" prefHeight="40.0" prefWidth="90.0" styleClass="btnsjfx" text="Aceptar" textFill="WHITE" />
+            <JFXButton onAction="#selectCancelar" prefHeight="40.0" prefWidth="90.0" styleClass="btnsjfx" text="Cancelar" textFill="WHITE" />
          </children>
       </HBox>
    </children>

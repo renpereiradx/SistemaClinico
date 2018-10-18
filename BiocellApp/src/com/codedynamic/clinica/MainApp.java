@@ -441,7 +441,9 @@ public class MainApp extends Application {
 			AnchorPane indicacionesPane = loader.load();
 			contenedorPrincipal.setCenter(indicacionesPane);
 			IndicacionesMedicasControlador controlador = loader.getController();
-			
+			controlador.setDetalleAtencion(detalleAtencion);
+			controlador.setMainApp(this);
+			controlador.setPaciente(paciente);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

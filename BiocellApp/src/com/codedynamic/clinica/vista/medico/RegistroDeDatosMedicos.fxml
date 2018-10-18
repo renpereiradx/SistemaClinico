@@ -245,10 +245,10 @@
             <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox fx:id="cabezaTextField" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT">
                <children>
                   <Label text="Cabeza (Craneo, Ojos, Oidos, Nariz, CB):" />
-                  <JFXTextField prefHeight="26.0" prefWidth="377.0" />
+                  <JFXTextField fx:id="cabezaTextField" prefHeight="26.0" prefWidth="377.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
