@@ -11,7 +11,7 @@ import com.codedynamic.clinica.modelo.Habito;
 
 public class PSQLHabito implements HabitoDAO {
 	private final String INSERTAR = "INSERT INTO habitos(alimentarios, intestinal, urinario, suenho, actividad_fisica, factor_riesgo, ambiental, toxico, laboral, id_paciente) "
-			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_habitos";
 	private final String MODIFICAR = "UPDATE habitos SET alimentarios = ?, intestinal = ?, urinario = ?, suenho = ?, actividad_fisica = ?, factor_riesgo = ?, ambiental = ?, "
 			+ "toxico = ?, laboral = ?, id_paciente = ? WHERE id_habitos = ?";
 	private final String ELIMINAR = "DELETE FROM habitos WHERE id_habitos = ?";
@@ -37,7 +37,10 @@ public class PSQLHabito implements HabitoDAO {
 			sentencia.setString(8, o.getToxico());
 			sentencia.setString(9, o.getLaboral());
 			sentencia.setShort(10, o.getPaciente().getId_paciente());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdHabito(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {

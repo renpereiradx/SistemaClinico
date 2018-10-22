@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="890.0" prefWidth="1400.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="890.0" prefWidth="1400.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.medico.RegistroMedicosControlador">
    <children>
       <HBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -29,7 +29,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="10.0" prefHeight="43.0" prefWidth="423.0" style="-fx-background-color: #0f255f;">
                <children>
-                  <HBox layoutX="5.0" layoutY="8.0" spacing="5.0">
+                  <HBox layoutX="5.0" layoutY="8.0" spacing="10.0">
                      <children>
                         <Label text="Paciente:" textFill="#c3c1c1">
                            <font>
@@ -39,7 +39,7 @@
                               <Insets />
                            </HBox.margin>
                         </Label>
-                        <Label prefWidth="360.0" textFill="#c3c1c1">
+                        <Label fx:id="pacienteLabel" prefHeight="19.0" prefWidth="336.0" textFill="#c3c1c1">
                            <font>
                               <Font name="Segoe UI" size="16.0" />
                            </font>
@@ -58,8 +58,8 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="63.0" prefWidth="1372.0" spacing="57.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
          <children>
-            <JFXTextArea prefHeight="43.0" prefWidth="600.0" promptText="Antecedente de Enfermedad Actual" />
-            <JFXTextArea prefHeight="43.0" prefWidth="600.0" promptText="Medicamentos que toma actualmente" />
+            <JFXTextArea fx:id="antecedenteEATextArea" prefHeight="43.0" prefWidth="600.0" promptText="Antecedente de Enfermedad Actual" />
+            <JFXTextArea fx:id="medicamentoActualTextArea" prefHeight="43.0" prefWidth="600.0" promptText="Medicamentos que toma actualmente" />
          </children>
       </HBox>
       <Label layoutX="15.0" layoutY="163.0" text="Habitos">
@@ -71,15 +71,15 @@
          <children>
             <HBox alignment="CENTER" prefHeight="20.0" spacing="57.0">
                <children>
-                  <JFXTextField prefWidth="370.0" promptText="Alimentarios">
+                  <JFXTextField fx:id="alimentariosTextField" prefWidth="370.0" promptText="Alimentarios">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Intestinal">
+                  <JFXTextField fx:id="intestinalTextField" prefWidth="370.0" promptText="Intestinal">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Urinario">
+                  <JFXTextField fx:id="urinarioTextField" prefWidth="370.0" promptText="Urinario">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
@@ -87,15 +87,15 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="20.0" spacing="57.0">
                <children>
-                  <JFXTextField prefWidth="370.0" promptText="Sueño">
+                  <JFXTextField fx:id="suenoTextField" prefWidth="370.0" promptText="Sueño">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Actividad Fisica">
+                  <JFXTextField fx:id="actividadFisicaTextField" prefWidth="370.0" promptText="Actividad Fisica">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Factores Riesgo Asociado">
+                  <JFXTextField fx:id="factorRiesgoTextField" prefWidth="370.0" promptText="Factores Riesgo Asociado">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
@@ -103,15 +103,15 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="82.0" prefHeight="20.0" spacing="57.0">
                <children>
-                  <JFXTextField prefWidth="370.0" promptText="Ambiental">
+                  <JFXTextField fx:id="ambientalTextField" prefWidth="370.0" promptText="Ambiental">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Toxico y/o dependencias">
+                  <JFXTextField fx:id="toxicoDependTextField" prefWidth="370.0" promptText="Toxico y/o dependencias">
                      <font>
                         <Font name="System Italic" size="13.0" />
                      </font></JFXTextField>
-                  <JFXTextField prefWidth="370.0" promptText="Laboral" />
+                  <JFXTextField fx:id="laboralTextField" prefWidth="370.0" promptText="Laboral" />
                </children>
             </HBox>
          </children>
@@ -141,13 +141,13 @@
                         <Insets top="7.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXTextField alignment="CENTER" prefHeight="20.0" prefWidth="46.0" />
+                  <JFXTextField fx:id="paTextField1" alignment="CENTER" prefHeight="20.0" prefWidth="46.0" />
                   <Label text="X">
                      <HBox.margin>
                         <Insets top="7.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXTextField alignment="CENTER" layoutX="27.0" layoutY="10.0" prefHeight="26.0" prefWidth="46.0" />
+                  <JFXTextField fx:id="paTextField2" alignment="CENTER" layoutX="27.0" layoutY="10.0" prefHeight="26.0" prefWidth="46.0" />
                   <Label layoutX="10.0" layoutY="17.0" text="mmHg" />
                </children>
             </HBox>
@@ -158,7 +158,7 @@
                         <Insets top="7.0" />
                      </HBox.margin>
                   </Label>
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="pesoTextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="Kg">
                      <HBox.margin>
                         <Insets top="7.0" />
@@ -169,59 +169,59 @@
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2">
                <children>
                   <Label text="Altura:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="alturaTextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="m" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
                <children>
                   <Label text="FC:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="fcTextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="bpm" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label text="FR:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="frTextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="mrpm" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
                   <Label text="T. Axilar:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="tAxilarTextField" alignment="CENTER" prefWidth="70.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
                <children>
                   <Label text="Talla:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="tallaTextField" alignment="CENTER" prefWidth="70.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label text="IMC:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="imcTextField" alignment="CENTER" prefWidth="70.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <children>
                   <Label text="CA:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="caTextField" alignment="CENTER" prefWidth="70.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
                <children>
                   <Label text="Glicemia:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="glicemiaTextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="mg/dl" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label text="SPO2:" />
-                  <JFXTextField alignment="CENTER" prefWidth="70.0" />
+                  <JFXTextField fx:id="spo2TextField" alignment="CENTER" prefWidth="70.0" />
                   <Label text="\%" />
                </children>
             </HBox>
@@ -248,78 +248,73 @@
             <HBox alignment="CENTER_LEFT">
                <children>
                   <Label text="Cabeza (Craneo, Ojos, Oidos, Nariz, CB):" />
-                  <JFXTextField prefHeight="26.0" prefWidth="377.0" />
+                  <JFXTextField fx:id="cabezaTextField" prefHeight="26.0" prefWidth="377.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">
                <children>
                   <Label text="Cuello:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="598.0" />
+                  <JFXTextField fx:id="cuelloTextField" prefHeight="26.0" prefWidth="598.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
                <children>
                   <Label text="Tórax/Aparato Respiratorio:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="460.0" />
+                  <JFXTextField fx:id="toraxTextField" prefHeight="26.0" prefWidth="460.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Label text="Aparato Cardiovascular:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="483.0" />
+                  <JFXTextField fx:id="aparatoTextField" prefHeight="26.0" prefWidth="483.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="2">
                <children>
                   <Label text="Abdomen y Pelvis:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="520.0" />
+                  <JFXTextField fx:id="abdomenTextField" prefHeight="26.0" prefWidth="520.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <Label text="Aparato Genito Urinario:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="481.0" />
+                  <JFXTextField fx:id="aparatoGenitTextField" prefHeight="26.0" prefWidth="481.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="3">
                <children>
                   <Label text="Piel y Faneras:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="544.0" />
+                  <JFXTextField fx:id="pielTextField" prefHeight="26.0" prefWidth="544.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <Label text="Sistemas Osteoartromuscular:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="441.0" />
+                  <JFXTextField fx:id="sistemaOsteoTextField" prefHeight="26.0" prefWidth="441.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.rowIndex="4">
                <children>
                   <Label text="SNC:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="609.0" />
+                  <JFXTextField fx:id="sncTextField" prefHeight="26.0" prefWidth="609.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Label text="Psiquiatrico:" />
-                  <JFXTextField prefHeight="26.0" prefWidth="559.0" />
+                  <JFXTextField fx:id="psiquiatricoTextField" prefHeight="26.0" prefWidth="559.0" />
                </children>
             </HBox>
          </children>
       </GridPane>
-      <HBox layoutX="976.0" layoutY="807.0" spacing="30.0">
+      <HBox layoutX="976.0" layoutY="807.0" spacing="60.0">
          <children>
-            <JFXButton prefHeight="55.0" prefWidth="100.0" styleClass="btnsjfx" text="GUARDAR">
+            <JFXButton onAction="#siguiente" prefHeight="55.0" prefWidth="100.0" styleClass="btnsjfx" text="SIGUIENTE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>
             </JFXButton>
             <JFXButton prefHeight="55.0" prefWidth="100.0" styleClass="btnsjfx" text="SALIR">
-               <font>
-                  <Font name="Segoe UI" size="13.0" />
-               </font>
-            </JFXButton>
-            <JFXButton prefHeight="55.0" prefWidth="100.0" styleClass="btnsjfx" text="SIGUIENTE">
                <font>
                   <Font name="Segoe UI" size="13.0" />
                </font>

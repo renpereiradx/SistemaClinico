@@ -11,48 +11,48 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.HomeControlador">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1000.0" stylesheets="@Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.HomeControlador">
    <center>
       <AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #f6f6f6;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="343.0" layoutY="9.0" text="BIOCELLS" textFill="#03c67a">
+            <Label layoutX="343.0" layoutY="9.0" text="BIOCELLS" textFill="#333645">
                <font>
                   <Font name="Segoe UI Bold" size="70.0" />
                </font></Label>
-            <AnchorPane layoutX="100.0" layoutY="134.0" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #23de95; -fx-background-color: #f4efef;" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+            <AnchorPane layoutX="100.0" layoutY="134.0" prefHeight="600.0" prefWidth="900.0" style="-fx-border-color: #333645; -fx-background-color: #f4efef;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="150.0">
                <children>
-                  <VBox layoutX="47.0" layoutY="30.0">
+                  <VBox layoutX="47.0" layoutY="30.0" spacing="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                      <children>
-                        <HBox spacing="70.0">
+                        <HBox alignment="TOP_CENTER" spacing="70.0">
                            <children>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="55.0" onAction="#seccionPaciente" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #23de95;" text="PACIENTES" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="PACIENTES" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="USER" size="8em" />
                                  </graphic>
                                  <font>
-                                    <Font name="Calibri" size="30.0" />
+                                    <Font name="Segoe UI" size="20.0" />
                                  </font>
                                  <effect>
                                     <DropShadow blurType="TWO_PASS_BOX" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="55.0" layoutX="10.0" layoutY="10.0" onAction="#seccionTurno" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #23de95;" text="TURNOS" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="10.0" layoutY="10.0" onAction="#seccionTurno" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="TURNOS" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="PLUS_CIRCLE" size="8em" />
                                  </graphic>
                                  <font>
-                                    <Font name="Calibri" size="30.0" />
+                                    <Font name="Segoe UI" size="20.0" />
                                  </font>
                                  <effect>
                                     <DropShadow blurType="TWO_PASS_BOX" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="55.0" layoutX="300.0" layoutY="10.0" onAction="#seccionMedicos" prefHeight="220.0" prefWidth="220.0" style="-fx-background-color: #23de95;" text="MEDICOS" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="300.0" layoutY="10.0" onAction="#seccionMedicos" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="MEDICOS" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="USER_MD" size="8em" />
                                  </graphic>
                                  <font>
-                                    <Font name="Calibri" size="30.0" />
+                                    <Font name="Segoe UI" size="20.0" />
                                  </font>
                                  <effect>
                                     <DropShadow blurType="TWO_PASS_BOX" />
@@ -60,10 +60,82 @@
                               </JFXButton>
                            </children>
                         </HBox>
-                        <HBox>
+                        <HBox alignment="TOP_CENTER" spacing="70.0">
                            <VBox.margin>
-                              <Insets top="50.0" />
+                              <Insets />
                            </VBox.margin>
+                           <children>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="ENFERMERIA" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="STETHOSCOPE" size="8em" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="10.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="SPA/FISIO" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="BED" size="8EM" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="474.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="ESTADISTICAS" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="LINE_CHART" size="8EM" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="230.0" spacing="70.0">
+                           <children>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="TRATAMIENTOS" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="HEARTBEAT" size="8em" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="10.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="PRODUCTOS" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="SHOPPING_BAG" size="8EM" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="474.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="FACTURAR" textAlignment="CENTER" textFill="#f8f8f8">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#f8f8f8" glyphName="DOLLAR" size="8EM" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="Segoe UI" size="20.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX" />
+                                 </effect>
+                              </JFXButton>
+                           </children>
                         </HBox>
                      </children>
                   </VBox>

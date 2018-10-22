@@ -5,6 +5,7 @@ import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Turno;
 import com.codedynamic.clinica.utilidades.UtilidadFecha;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,6 +27,7 @@ public class TurnoPrincipalControlador {
     @FXML private TableColumn<Turno, LocalTime> horaTableColumn;
     @FXML private TableColumn<Turno, LocalDate> fechaTableColumn;
     @FXML private TableColumn<Turno, String> estadoTableColumn;
+    @FXML private TableColumn<Turno, String> detalleTableColumn;
 
 
     private MainApp mainApp;
@@ -48,6 +50,7 @@ public class TurnoPrincipalControlador {
         horaTableColumn.setCellValueFactory(datoCelda -> datoCelda.getValue().horaProperty());
         fechaTableColumn.setCellValueFactory(datoCelda -> datoCelda.getValue().fechaProperty());
         estadoTableColumn.setCellValueFactory(datoCelda -> datoCelda.getValue().estadoProperty());
+        detalleTableColumn.setCellValueFactory(datoCelda -> new ReadOnlyStringWrapper(datoCelda.getValue().getDescripcion()));
         mostrarTurnosHoy();
     }
 

@@ -7,18 +7,20 @@ import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLAtencion;
 import com.codedynamic.clinica.dao.postgresql.PSQLTurno;
 import com.codedynamic.clinica.modelo.Atencion;
+import com.codedynamic.clinica.modelo.Paciente;
 import com.codedynamic.clinica.modelo.Turno;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.StageStyle;
 
 public class MedicoPrincipalControlador {
 	
@@ -48,15 +50,11 @@ public class MedicoPrincipalControlador {
 	private PSQLTurno psqlTurno;
 	private Atencion atencion;
 	private ObservableList<Turno> turnos = FXCollections.observableArrayList();
-	private ObservableList<String> listaTipoAtenciones = FXCollections.observableArrayList();
+	private ObservableList<String> listaTipoAtenciones = FXCollections.observableArrayList("MEDICO", "ESTETICA", "ENFERMERIA");
 	
 	public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
     }
-    
-    /* public ObservableList<Turno> getTurnos() {
-        return turnos;
-    } */
     
     @FXML
     private void initialize() {
@@ -68,6 +66,7 @@ public class MedicoPrincipalControlador {
         descripcionTableColumn.setCellValueFactory(datoCelda -> new ReadOnlyStringWrapper(datoCelda.getValue().getDescripcion()));
         estadoTableColumn.setCellValueFactory(datoCelda -> datoCelda.getValue().estadoProperty());
         mostrarTurnosHoy();
+        tipoAtencioComboBox.getItems().addAll(listaTipoAtenciones);
     }
     
     @FXML
@@ -87,28 +86,37 @@ public class MedicoPrincipalControlador {
     @FXML
     private void atenderTurno() {
     	PSQLAtencion psqlAtencion = new PSQLAtencion();
-    	listaTipoAtenciones.addAll("MEDICO", "ESTETICA", "ENFERMERIA");
-    	tipoAtencioComboBox = new JFXComboBox<>(listaTipoAtenciones);
     	atencion = new Atencion();
+    	Paciente pacienteTemp;
+    	int selectIndex = turnoTableView.getSelectionModel().getSelectedIndex();
     	if (motivoField.getText().length() > 0) {
 			atencion.setMotivo(motivoField.getText());
 		} else {
 			atencion.setMotivo("No especificado");
 		}
 		atencion.setUsuario(mainApp.getUsuarioLoggeado());
-    	if (tipoAtencioComboBox.getValue().equals("MEDICO")) {
-			atencion.setIdTipoAtencion((short)1);
+    	if (tipoAtencioComboBox.getValue() != null) {
+			if (tipoAtencioComboBox.getValue().equals("MEDICO")) {
+				atencion.setIdTipoAtencion((short) 1);
+			} 
 		}
-    	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
-    	if (atencion != null) {
-			psqlAtencion.insertar(atencion);
+		if (atencion != null && selectIndex >= 0) {
+        	atencion.setTurno(turnoTableView.getSelectionModel().getSelectedItem());
+        	pacienteTemp = turnoTableView.getSelectionModel().getSelectedItem().getPaciente();
+    		psqlAtencion.insertar(atencion);
 			mainApp.getContenedorPrincipal().setCenter(null);
-			mainApp.mostrarRegistroDatosMedicos(atencion);
+			mainApp.mostrarRegistroDatosMedicos(atencion, pacienteTemp);
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("ERROR EN REGISTRO");
+			alert.setContentText("No se pudo registrar ningun dato, favor asegurese de completar los campos y seleccionar un Paciente en la tabla TURNOS");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
 		}
     }
     
     private void limpiarTablaTurnos() {
         turnoTableView.getItems().clear();
     }
-    
 }

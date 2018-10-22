@@ -11,7 +11,7 @@ import com.codedynamic.clinica.modelo.Ippa;
 
 public class PSQLIppa implements IppaDAO {
 	private final String INSERTAR = "INSERT INTO ippa(cabeza, cuello, torax, aparato_cv, abdomen, aparato_g, piel, sistema, snc, psiquiatrico, id_paciente) "
-			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id_ppa";
 	private final String MODIFICAR = "UPDATE ippa SET cabeza = ?, cuello = ?, torax = ?, aparato_cv = ?, abdomen = ?, aparato_g = ?, piel = ?, sistema = ?, "
 			+ "snc = ?, psiquiatrico = ?, id_paciente = ? WHERE id_ppa = ?";
 	private final String ELMINAR = "DELETE FROM ippa WHERE id_ppa = ?";
@@ -38,7 +38,10 @@ public class PSQLIppa implements IppaDAO {
 			sentencia.setString(9, o.getSnc());
 			sentencia.setString(10, o.getPsquiatrico());
 			sentencia.setShort(11, o.getPaciente().getId_paciente());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdPpa(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {

@@ -11,50 +11,48 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.TurnoPrincipalControlador">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.turno.TurnoPrincipalControlador">
    <children>
       <Pane layoutY="2.0" prefHeight="57.0" prefWidth="663.0" styleClass="sidebar" stylesheets="@Estilos.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="345.0" layoutY="8.0" text="Turnos" textFill="WHITE">
+            <Label layoutX="645.0" layoutY="8.0" text="Turnos" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="34.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <TableView fx:id="turnoTableView" layoutX="112.0" layoutY="223.0" prefHeight="500.0" prefWidth="642.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+      <TableView fx:id="turnoTableView" layoutX="50.0" layoutY="78.0" prefHeight="626.0" prefWidth="1300.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
         <columns>
-          <TableColumn fx:id="numeroTableColumn" prefWidth="50.0" resizable="false" text="Nro" />
-          <TableColumn fx:id="pNombreTableColumn" prefWidth="200.0" resizable="false" text="NOMBRE" />
+          <TableColumn fx:id="numeroTableColumn" prefWidth="56.00001525878906" resizable="false" text="Nro" />
+          <TableColumn fx:id="pNombreTableColumn" prefWidth="193.99998474121094" resizable="false" text="NOMBRE" />
             <TableColumn fx:id="pApellidoTableColumn" prefWidth="200.0" resizable="false" text="APELLIDO" />
             <TableColumn fx:id="horaTableColumn" prefWidth="87.0" resizable="false" text="HORA" />
             <TableColumn fx:id="fechaTableColumn" prefWidth="90.0" text="FECHA" />
-            <TableColumn fx:id="estadoTableColumn" prefWidth="75.0" text="ESTADO" />
+            <TableColumn fx:id="detalleTableColumn" prefWidth="510.0" text="DETALLE" />
+            <TableColumn fx:id="estadoTableColumn" minWidth="0.0" prefWidth="161.0" text="ESTADO" />
         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
       </TableView>
-      <HBox layoutX="11.0" layoutY="581.0" spacing="30.0">
+      <HBox layoutX="50.0" layoutY="737.0" spacing="30.0">
          <children>
-            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#mostrarTurnosHoy" prefHeight="50.0" prefWidth="106.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="HOY" textFill="WHITE">
+            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#mostrarTurnosHoy" prefHeight="60.0" prefWidth="106.0" styleClass="btnsjfx" text="HOY" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="1.9em" />
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#gestionarNuevoTurno" prefHeight="50.0" prefWidth="106.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Nuevo Turno" textFill="WHITE">
+            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#gestionarNuevoTurno" prefHeight="60.0" prefWidth="106.0" styleClass="btnsjfx" text="Nuevo Turno" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_PLUS_ALT" size="1.9em" />
                </graphic>
             </JFXButton>
-            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#gestionarFechaTurno" prefHeight="50.0" prefWidth="106.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Buscar/Fecha" textFill="WHITE">
+            <JFXButton alignment="CENTER" contentDisplay="TOP" onAction="#gestionarFechaTurno" prefHeight="60.0" prefWidth="106.0" styleClass="btnsjfx" text="Buscar/Fecha" textFill="WHITE">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="1.9em" />
                </graphic>
             </JFXButton>
          </children>
       </HBox>
-      <JFXButton alignment="CENTER" contentDisplay="TOP" layoutX="669.0" layoutY="581.0" onAction="#mostrarDescripcion" prefHeight="54.0" prefWidth="121.0" style="-fx-background-color: #03c67a; -fx-background-radius: 0;" text="Ver Descripcion" textFill="WHITE">
+      <JFXButton alignment="CENTER" contentDisplay="TOP" layoutX="1229.0" layoutY="740.0" onAction="#mostrarDescripcion" prefHeight="54.0" prefWidth="121.0" styleClass="btnsjfx" text="Ver Descripcion" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="CLONE" size="1.9em" />
          </graphic>
