@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.TelefonoProveedorDAO;
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
+import com.codedynamic.clinica.modelo.Proveedor;
 import com.codedynamic.clinica.modelo.TelefonoProveedor;
 
 public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
@@ -15,7 +18,6 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 	private final String MODIFICAR = "UPDATE telefono_proveedores SET telefono = ?, id_proveedor = ? WHERE id_proveedor = ?";
 	private final String ELIMINAR = "DELETE FROM telefono_proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT telefono, id_proveedor FROM telefono_proveedores WHERE id_proveedor = ?";
-	private final String OBTENERLISTA = "SELECT telefono, id_proveedor FROM telefono proveedores WHERE id_proveedores = ?";
 	
 	private Connection conexion;
 	private PreparedStatement sentencia;
@@ -72,10 +74,50 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 	}
 	@Override
 	public TelefonoProveedor obtenerPorID(Short k) throws ExcepcionGeneral {
-		return null;
+		TelefonoProveedor telefonoProveedor = null;
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERPORID);
+			sentencia.setShort(1, k);
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				telefonoProveedor = convertir(resultado);
+			} else {
+				throw new ExcepcionGeneral("No se obtuvo ningun registro");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+		return telefonoProveedor;
 	}
 	
+	public List<TelefonoProveedor> obtenerLista(Short k) throws ExcepcionGeneral {
+		List<TelefonoProveedor> telefonoProveedors = new ArrayList<>();
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERPORID);
+			sentencia.setShort(1, k);
+			resultado = sentencia.executeQuery();
+			while (resultado.next()) {
+				telefonoProveedors.add(convertir(resultado));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cerrarConexiones();
+		}
+		return telefonoProveedors;		
+	}
 	
+	private TelefonoProveedor convertir(ResultSet rs) throws SQLException {
+		TelefonoProveedor telefono = new TelefonoProveedor();
+		PSQLProveedor proveedor = new PSQLProveedor();
+		telefono.setProveedor(proveedor.obtenerPorID(rs.getShort("id_proveedor")));
+		telefono.setTelefono("telefono");
+		return telefono;
+	}
 	
 	private void cerrarConexiones() {
 		try {
