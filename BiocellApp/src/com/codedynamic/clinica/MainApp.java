@@ -448,6 +448,46 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
     }
+    
+    public void mostrarProductoPrincial() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/productos/ProductoPrincipal.fxml"));
+			AnchorPane productoPane = loader.load();
+			contenedorPrincipal.setCenter(productoPane);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarProductoMenu() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/productos/ProductoMenu.fxml"));
+			AnchorPane menuPane = loader.load();
+			contenedorPrincipal.setLeft(menuPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public boolean mostrarProductoRegistro(Producto producto) {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/ProductoRegistro.fxml"));
+			AnchorPane registroPane = loader.load();
+			Stage registroStage = new Stage();
+			registroStage.setTitle("Registro de Productos");
+			registroStage.initOwner(primaryStage);
+			Scene scene = new Scene(registroPane);
+			registroStage.setScene(scene);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	return true;
+    }
 
     public BorderPane getContenedorPrincipal() {
         return contenedorPrincipal;

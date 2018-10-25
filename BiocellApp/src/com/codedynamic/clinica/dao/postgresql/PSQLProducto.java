@@ -18,6 +18,7 @@ public class PSQLProducto implements ProductoDAO {
 	private final String ELIMINAR = "DELETE FROM productos WHERE id_producto = ?";
 	private final String OBTENERPORID = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos WHERE id_producto = ?";
 	private final String OBTENERLISTA = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos";
+	private final String OBTENERPORNOMBRE = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos WHERE nombre ILIKE ?";
 	
 	private Connection conexion;
 	private PreparedStatement sentencia;
@@ -106,6 +107,24 @@ public class PSQLProducto implements ProductoDAO {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(OBTENERLISTA);
+			resultado = sentencia.executeQuery();
+			while (resultado.next()) {
+				listaProducto.add(convertir(resultado));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+		return listaProducto;
+	}
+	
+	public List<Producto> obtenerProductoNombre(String nombre) throws ExcepcionGeneral {
+		List<Producto> listaProducto = new ArrayList<>();
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERPORNOMBRE);
+			sentencia.setString(1, nombre);
 			resultado = sentencia.executeQuery();
 			while (resultado.next()) {
 				listaProducto.add(convertir(resultado));
