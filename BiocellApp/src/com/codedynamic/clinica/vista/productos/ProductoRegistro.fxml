@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="273.0" prefWidth="540.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="273.0" prefWidth="540.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.productos.ProductoRegistroControlador">
    <children>
       <Pane layoutX="180.0" layoutY="1.0" prefHeight="50.0" prefWidth="200.0" styleClass="sidebar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -20,15 +20,15 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="30.0" prefWidth="200.0" promptText="NOMBRE" />
-      <JFXTextField alignment="CENTER" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="200.0" promptText="PRECIO" />
-      <JFXTextField alignment="CENTER" layoutX="15.0" layoutY="164.0" prefHeight="30.0" prefWidth="509.0" promptText="DESCRIPCION" />
-      <JFXComboBox layoutX="345.0" layoutY="64.0" prefHeight="30.0" promptText="TIPO DE PRODUCTO" />
-      <JFXTextField alignment="CENTER" layoutX="345.0" layoutY="114.0" prefHeight="30.0" prefWidth="96.0" promptText="STOCK" />
+      <JFXTextField fx:id="nombreTextField" alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="30.0" prefWidth="200.0" promptText="NOMBRE" />
+      <JFXTextField fx:id="precioTextField" alignment="CENTER" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="200.0" promptText="PRECIO" />
+      <JFXTextField fx:id="descripcionTextField" alignment="CENTER" layoutX="15.0" layoutY="164.0" prefHeight="30.0" prefWidth="509.0" promptText="DESCRIPCION" />
+      <JFXComboBox fx:id="tipoProductoCB" layoutX="345.0" layoutY="64.0" prefHeight="30.0" promptText="TIPO DE PRODUCTO" />
+      <JFXTextField fx:id="stockTextField" alignment="CENTER" layoutX="345.0" layoutY="114.0" prefHeight="30.0" prefWidth="96.0" promptText="STOCK" />
       <HBox alignment="CENTER" layoutX="263.0" layoutY="218.0" spacing="20.0">
          <children>
-            <JFXButton prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="ACEPTAR" />
-            <JFXButton prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="CANCELAR" />
+            <JFXButton onAction="#aceptar" prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="ACEPTAR" />
+            <JFXButton onAction="#cancelar" prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="CANCELAR" />
          </children>
       </HBox>
    </children>

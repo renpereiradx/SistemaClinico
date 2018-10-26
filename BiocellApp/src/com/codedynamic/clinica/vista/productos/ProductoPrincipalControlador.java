@@ -8,9 +8,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.StageStyle;
 
 public class ProductoPrincipalControlador {
 	
@@ -20,6 +23,7 @@ public class ProductoPrincipalControlador {
 	@FXML private JFXTextField nombreProductoTextField;
 	@FXML private Label codigoLabel;
 	@FXML private Label nombreLabel;
+	@FXML private Label precioLabel;
 	@FXML private Label descripcionLabel;
 	@FXML private Label tipoLabel;
 	@FXML private Label stockLabel;
@@ -38,7 +42,8 @@ public class ProductoPrincipalControlador {
 		mostrarProducto();
 	}
 	
-	@FXML private void nuevoProducto() {
+	@FXML
+	private void nuevoProducto() {
 		Producto producto = new Producto();
 		psqlProducto = new PSQLProducto();
 		boolean okClicked = mainApp.mostrarProductoRegistro(producto);
@@ -51,15 +56,54 @@ public class ProductoPrincipalControlador {
 		}
 	}
 	
-	@FXML private void buscarProductoNombre() {
+	@FXML
+	private void editarProducto() {
+		Producto producto = tablaProducto.getSelectionModel().getSelectedItem();		
+		if (producto != null) {
+			boolean okClicked = mainApp.mostrarProductoRegistro(producto);
+			if (okClicked) {
+				psqlProducto = new PSQLProducto();
+				psqlProducto.modificar(producto);
+				mostrarDetallesProductos(producto);
+			}
+		} else {
+			Alert alerta = new Alert(AlertType.WARNING);
+			alerta.setTitle("ATENCION");
+			alerta.setHeaderText("Producto no seleccionado");
+			alerta.setContentText("Favor seleccione un producto en la tabla");
+			alerta.initStyle(StageStyle.UTILITY);
+			alerta.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void eliminarProducto() {
+		Producto producto = tablaProducto.getSelectionModel().getSelectedItem();
+		int index = tablaProducto.getSelectionModel().getSelectedIndex();
+		if (index >= 0) {
+			psqlProducto = new PSQLProducto();
+			psqlProducto.insertar(producto);
+			tablaProducto.getItems().remove(index);
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ATENCION");
+			alert.setHeaderText("Tabla Vacia");
+			alert.setContentText("Ya no quedan elementos por eliminar");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void buscarProductoNombre() {
 		psqlProducto = new PSQLProducto();
-		lista.addAll(psqlProducto.obtenerProductoNombre(nombreProductoTextField.getText()));
-		if (!(nombreProductoTextField.getText().length() == 0 || nombreProductoTextField.getText() == null)) {
+		if (!nombreProductoTextField.getText().isEmpty()) {
+			lista.addAll(psqlProducto.obtenerProductoNombre(nombreProductoTextField.getText()));
 			if (!lista.isEmpty()) {
 				tablaProducto.setItems(lista);
-			} else {
-				nombreProductoTextField.setText("Digite Nombre del Producto");
 			}
+		} else {
+			nombreProductoTextField.setText("Digite Nombre del Producto");
 		}
 	}
 	
@@ -73,12 +117,14 @@ public class ProductoPrincipalControlador {
 		if (producto != null) {
 			codigoLabel.setText(Integer.toString(producto.getIdProducto()));
 			nombreLabel.setText(producto.getNombre());
+			precioLabel.setText(Integer.toString(producto.getPrecio()));
 			descripcionLabel.setText(producto.getDescripcion());
 			tipoLabel.setText(producto.getCategoriaProducto().getCategoria());
 			stockLabel.setText(Integer.toString(producto.getStock()));
 		} else {
 			codigoLabel.setText("");
 			nombreLabel.setText("");
+			precioLabel.setText("");
 			descripcionLabel.setText("");
 			tipoLabel.setText("");
 			stockLabel.setText("");

@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codedynamic.clinica.vista.productos.ProductoMenuControlador">
    <children>
       <VBox prefHeight="798.0" prefWidth="250.0" styleClass="sidebar" stylesheets="@Estilos.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Administrar Productos" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="250.0" text="Administracion" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Label>
             <VBox prefWidth="250.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="90.0" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="90.0" onMouseClicked="#mostrarPaginaPrincipal" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="HOME" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Principal">
                            <font>
-                              <Font name="Calibri Bold" size="23.0" />
+                              <Font name="Calibri Bold" size="19.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -36,12 +36,12 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" onMouseClicked="#mostrarAdminProducto" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="PLUS_SQUARE" size="2em" styleClass="icons" />
-                        <Label styleClass="lbl-sidebar" text="Productos">
+                        <Label styleClass="lbl-sidebar" text="Admin. Producto">
                            <font>
-                              <Font name="Calibri Bold" size="23.0" />
+                              <Font name="Calibri Bold" size="19.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -60,7 +60,7 @@
                         <FontAwesomeIconView glyphName="TRUCK" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Proveedores">
                            <font>
-                              <Font name="Calibri Bold" size="23.0" />
+                              <Font name="Calibri Bold" size="19.0" />
                            </font>
                            <HBox.margin>
                               <Insets />
@@ -79,7 +79,7 @@
                         <FontAwesomeIconView glyphName="LIST" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Tratamientos">
                            <font>
-                              <Font name="Calibri Bold" size="23.0" />
+                              <Font name="Calibri Bold" size="19.0" />
                            </font>
                            <HBox.margin>
                               <Insets />

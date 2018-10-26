@@ -21,6 +21,9 @@ import com.codedynamic.clinica.vista.paciente.antecedente.AntecedenteMasculinoDi
 import com.codedynamic.clinica.vista.paciente.antecedente.AntecedentePersonalControlador;
 import com.codedynamic.clinica.vista.paciente.antecedente.AntecedentePrincipalControlador;
 import com.codedynamic.clinica.vista.paciente.antecedente.AntecedenteQuirurgicoControlador;
+import com.codedynamic.clinica.vista.productos.ProductoMenuControlador;
+import com.codedynamic.clinica.vista.productos.ProductoPrincipalControlador;
+import com.codedynamic.clinica.vista.productos.ProductoRegistroControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoFechaControlador;
 import com.codedynamic.clinica.vista.turno.TurnoDescripcionControlador;
@@ -455,7 +458,8 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("vista/productos/ProductoPrincipal.fxml"));
 			AnchorPane productoPane = loader.load();
 			contenedorPrincipal.setCenter(productoPane);
-			
+			ProductoPrincipalControlador controlador = loader.getController();
+			controlador.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -467,6 +471,8 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("vista/productos/ProductoMenu.fxml"));
 			AnchorPane menuPane = loader.load();
 			contenedorPrincipal.setLeft(menuPane);
+			ProductoMenuControlador controlador = loader.getController();
+			controlador.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -475,18 +481,23 @@ public class MainApp extends Application {
     public boolean mostrarProductoRegistro(Producto producto) {
     	try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainApp.class.getResource("vista/ProductoRegistro.fxml"));
+			loader.setLocation(MainApp.class.getResource("vista/productos/ProductoRegistro.fxml"));
 			AnchorPane registroPane = loader.load();
 			Stage registroStage = new Stage();
 			registroStage.setTitle("Registro de Productos");
 			registroStage.initOwner(primaryStage);
 			Scene scene = new Scene(registroPane);
 			registroStage.setScene(scene);
-			
+			ProductoRegistroControlador controlador = loader.getController();
+			controlador.setMainApp(this);
+			controlador.setProducto(producto);
+			controlador.setStage(registroStage);
+			registroStage.showAndWait();
+			return controlador.isOkClicked();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
-    	return true;
     }
 
     public BorderPane getContenedorPrincipal() {
