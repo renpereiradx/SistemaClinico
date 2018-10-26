@@ -113,18 +113,18 @@
                                     <DropShadow blurType="TWO_PASS_BOX" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="10.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="PRODUCTOS" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="10.0" layoutY="10.0" onAction="#seccionProducto" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="PRODUCTOS/PROVEEDORES" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="SHOPPING_BAG" size="8EM" />
                                  </graphic>
                                  <font>
-                                    <Font name="Segoe UI" size="20.0" />
+                                    <Font name="Segoe UI Bold" size="12.0" />
                                  </font>
                                  <effect>
                                     <DropShadow blurType="TWO_PASS_BOX" />
                                  </effect>
                               </JFXButton>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="474.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="FACTURAR" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" layoutX="474.0" layoutY="10.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="FACTURAS" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="DOLLAR" size="8EM" />
                                  </graphic>

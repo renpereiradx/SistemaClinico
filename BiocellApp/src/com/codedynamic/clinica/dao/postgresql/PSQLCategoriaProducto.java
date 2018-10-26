@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.CategoriaProductoDAO;
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
@@ -15,6 +17,7 @@ public class PSQLCategoriaProducto implements CategoriaProductoDAO {
 	private final String MODIFICAR = "UPDATE categoria_productos SET categoria = ?, descripcion = ? WHERE id_categoria = ?";
 	private final String ELIMINAR = "DELETE FROM categoria_productos WHERE id_categoria = ?";
 	private final String OBTENERPORID = "SELECT id_categoria, categoria, descripcion FROM categoria_productos WHERE id_categoria = ?";
+	private final String OBTENER = "SELECT id_categoria, categoria, descripcion FROM categoria_productos";
 	
 	private Connection conexion;
 	private PreparedStatement sentencia;
@@ -90,6 +93,23 @@ public class PSQLCategoriaProducto implements CategoriaProductoDAO {
 			cerrarConexiones();
 		}
 		return categoriaProducto;
+	}
+	
+	public List<CategoriaProducto> obtenerLista() {
+		List<CategoriaProducto> lista = new ArrayList<>();
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENER);
+			resultado = sentencia.executeQuery();
+			while (resultado.next()) {
+				lista.add(convertir(resultado));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+		return lista;
 	}
 	
 	private CategoriaProducto convertir(ResultSet rs) throws SQLException {

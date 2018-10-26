@@ -38,8 +38,14 @@ public class HomeControlador {
     }
     
     @FXML private void seccionMedicos() {
-    	mainApp.getContenedorPrincipal().setCenter(null);
+    	//mainApp.getContenedorPrincipal().setCenter(null);
     	mainApp.mostrarMedicoPrincipal();
     	mainApp.mostrarMedicoMenu();
+    }
+    
+    @FXML private void seccionProducto() {
+    	//mainApp.getContenedorPrincipal().setCenter(null);
+    	mainApp.mostrarProductoMenu();
+    	mainApp.mostrarProductoPrincial();
     }
 }
