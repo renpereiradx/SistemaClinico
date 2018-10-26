@@ -27,8 +27,8 @@
       <JFXTextField alignment="CENTER" layoutX="345.0" layoutY="114.0" prefHeight="30.0" prefWidth="96.0" promptText="STOCK" />
       <HBox alignment="CENTER" layoutX="263.0" layoutY="218.0" spacing="20.0">
          <children>
-            <JFXButton prefHeight="45.0" prefWidth="120.0" styleClass="btnsjfx" text="ACEPTAR" />
-            <JFXButton prefHeight="45.0" prefWidth="120.0" styleClass="btnsjfx" text="CANCELAR" />
+            <JFXButton prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="ACEPTAR" />
+            <JFXButton prefHeight="45.0" prefWidth="110.0" styleClass="btnsjfx" text="CANCELAR" />
          </children>
       </HBox>
    </children>

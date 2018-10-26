@@ -1,5 +1,6 @@
 package com.codedynamic.clinica.vista.productos;
 
+import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLProducto;
 import com.codedynamic.clinica.modelo.Producto;
 import com.jfoenix.controls.JFXTextField;
@@ -23,20 +24,36 @@ public class ProductoPrincipalControlador {
 	@FXML private Label tipoLabel;
 	@FXML private Label stockLabel;
 	
-	private ObservableList<Producto> lista;;
+	private MainApp mainApp;
+	
+	private ObservableList<Producto> lista = FXCollections.observableArrayList();
 	private PSQLProducto psqlProducto;
+	
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
+	
 	@FXML private void initialize() {
 		mostrarDetallesProductos(null);
 		mostrarProducto();
 	}
 	
 	@FXML private void nuevoProducto() {
-		
+		Producto producto = new Producto();
+		psqlProducto = new PSQLProducto();
+		boolean okClicked = mainApp.mostrarProductoRegistro(producto);
+		if (okClicked) {
+			lista.add(producto);
+			psqlProducto.insertar(producto);
+			if (tablaProducto.getSelectionModel().getSelectedIndex() < 0) {
+				tablaProducto.setItems(lista);
+			}
+		}
 	}
 	
 	@FXML private void buscarProductoNombre() {
 		psqlProducto = new PSQLProducto();
-		lista = FXCollections.observableArrayList(psqlProducto.obtenerProductoNombre(nombreProductoTextField.getText()));
+		lista.addAll(psqlProducto.obtenerProductoNombre(nombreProductoTextField.getText()));
 		if (!(nombreProductoTextField.getText().length() == 0 || nombreProductoTextField.getText() == null)) {
 			if (!lista.isEmpty()) {
 				tablaProducto.setItems(lista);
