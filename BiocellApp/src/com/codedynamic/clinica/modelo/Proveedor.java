@@ -1,50 +1,109 @@
 package com.codedynamic.clinica.modelo;
 
+import java.util.List;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Proveedor {
-	private short idProveedor;
-	private String nombre;
-	private String ruc;
-	private String direccion;
+	private IntegerProperty idProveedor;
+	private StringProperty nombre;
+	private StringProperty ruc;
+	private StringProperty direccion;
+	private ListProperty<TelefonoProveedor> telefonoProveedor;
 	
-	public Proveedor() {}
+	public Proveedor() {
+		this((short) 0, null, null, null, null);
+	}
 
-	public Proveedor(short idProveedor, String nombre, String ruc, String direccion) {
+	public Proveedor(short idProveedor, String nombre, String ruc, String direccion, List<TelefonoProveedor> telefonoProveedor) {
 		super();
-		this.idProveedor = idProveedor;
-		this.nombre = nombre;
-		this.ruc = ruc;
-		this.direccion = direccion;
+		this.idProveedor = new SimpleIntegerProperty(idProveedor);
+		this.nombre = new SimpleStringProperty(nombre);
+		this.ruc = new SimpleStringProperty(ruc);
+		this.direccion = new SimpleStringProperty(direccion);
+		this.telefonoProveedor = new SimpleListProperty<>(FXCollections.observableArrayList(telefonoProveedor));
 	}
 
-	public short getIdProveedor() {
-		return idProveedor;
+	public final IntegerProperty idProveedorProperty() {
+		return this.idProveedor;
 	}
+	
 
-	public void setIdProveedor(short idProveedor) {
-		this.idProveedor = idProveedor;
+	public final int getIdProveedor() {
+		return this.idProveedorProperty().get();
 	}
+	
 
-	public String getNombre() {
-		return nombre;
+	public final void setIdProveedor(final int idProveedor) {
+		this.idProveedorProperty().set(idProveedor);
 	}
+	
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public final StringProperty nombreProperty() {
+		return this.nombre;
 	}
+	
 
-	public String getRuc() {
-		return ruc;
+	public final String getNombre() {
+		return this.nombreProperty().get();
 	}
+	
 
-	public void setRuc(String ruc) {
-		this.ruc = ruc;
+	public final void setNombre(final String nombre) {
+		this.nombreProperty().set(nombre);
 	}
+	
 
-	public String getDireccion() {
-		return direccion;
+	public final StringProperty rucProperty() {
+		return this.ruc;
 	}
+	
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public final String getRuc() {
+		return this.rucProperty().get();
 	}
+	
+
+	public final void setRuc(final String ruc) {
+		this.rucProperty().set(ruc);
+	}
+	
+
+	public final StringProperty direccionProperty() {
+		return this.direccion;
+	}
+	
+
+	public final String getDireccion() {
+		return this.direccionProperty().get();
+	}
+	
+
+	public final void setDireccion(final String direccion) {
+		this.direccionProperty().set(direccion);
+	}
+	
+
+	public final ListProperty<TelefonoProveedor> telefonoProveedorProperty() {
+		return this.telefonoProveedor;
+	}
+	
+
+	public final ObservableList<TelefonoProveedor> getTelefonoProveedor() {
+		return this.telefonoProveedorProperty().get();
+	}
+	
+
+	public final void setTelefonoProveedor(final ObservableList<TelefonoProveedor> telefonoProveedor) {
+		this.telefonoProveedorProperty().set(telefonoProveedor);
+	}
+	
+	
 }

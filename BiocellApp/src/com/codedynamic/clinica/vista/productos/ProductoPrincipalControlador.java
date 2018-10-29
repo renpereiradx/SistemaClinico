@@ -107,6 +107,28 @@ public class ProductoPrincipalControlador {
 		}
 	}
 	
+	@FXML
+	private void listarProductos() {
+		psqlProducto = new PSQLProducto();
+		tablaProducto.getItems().removeAll(lista);
+		lista.addAll(psqlProducto.obtenerListaProducto());
+		tablaProducto.setItems(lista);
+	}
+	
+	@FXML
+	private void limpiarTabla() {
+		if (!tablaProducto.getItems().isEmpty()) {
+			tablaProducto.getItems().removeAll(lista);
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("No se puede limpiar Tabla");
+			alert.setContentText("Asegurese que haya 1 o mas elementos en la tabla antes de limpiar");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
 	private void mostrarProducto() {
 		columnaCodigo.setCellValueFactory(datoCelda -> datoCelda.getValue().idProductoProperty());
 		columnaNombre.setCellValueFactory(datoCelda -> datoCelda.getValue().nombreProperty());
