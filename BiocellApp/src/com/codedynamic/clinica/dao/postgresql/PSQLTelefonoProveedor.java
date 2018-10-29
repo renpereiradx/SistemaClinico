@@ -29,7 +29,7 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(INSERTAR);
 			sentencia.setString(1, o.getTelefono());
-			sentencia.setShort(2, o.getProveedor().getIdProveedor());
+			sentencia.setShort(2, (short) o.getProveedor().getIdProveedor());
 			if (sentencia.executeUpdate() == 0) {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
@@ -45,7 +45,7 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(MODIFICAR);
 			sentencia.setString(1, o.getTelefono());
-			sentencia.setShort(2, o.getProveedor().getIdProveedor());
+			sentencia.setShort(2, (short) o.getProveedor().getIdProveedor());
 			if (sentencia.executeUpdate() == 0) {
 				throw new ExcepcionGeneral("No se modifico ningun registro");
 			}
@@ -61,7 +61,7 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(ELIMINAR);
-			sentencia.setShort(1, o.getProveedor().getIdProveedor());
+			sentencia.setShort(1, (short) o.getProveedor().getIdProveedor());
 			if (sentencia.executeUpdate() == 0) {
 				throw new ExcepcionGeneral("No se elimino ningun registro");
 			}

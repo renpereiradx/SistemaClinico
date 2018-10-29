@@ -13,7 +13,11 @@ public class Producto {
 	private IntegerProperty stock;
 	private CategoriaProducto categoriaProducto;
 	
-	public Producto() {}
+	public Producto() {
+		this((short) 0, null, null, 0,(short) 0, null);
+	}
+	
+	//public Producto() {}
 	
 	public Producto(short idProducto, String nombre, String descripcion, int precio, short stock, CategoriaProducto categoriaProducto) {
 		this.idProducto = new SimpleIntegerProperty(idProducto);

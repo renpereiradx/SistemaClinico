@@ -19,6 +19,7 @@ public class PSQLProducto implements ProductoDAO {
 	private final String OBTENERPORID = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos WHERE id_producto = ?";
 	private final String OBTENERLISTA = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos";
 	private final String OBTENERPORNOMBRE = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos WHERE nombre ILIKE ?";
+	private final String OBTENERPORTIPO = "SELECT id_producto, nombre, descripcion, precio, stock, id_categoria FROM productos WHERE id_categoria = ?";
 	
 	private Connection conexion;
 	private PreparedStatement sentencia;
@@ -34,7 +35,10 @@ public class PSQLProducto implements ProductoDAO {
 			sentencia.setInt(3, o.getPrecio());
 			sentencia.setShort(4, (short) o.getStock());
 			sentencia.setShort(5, o.getCategoriaProducto().getIdCategoria());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setIdProducto(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {
@@ -124,7 +128,25 @@ public class PSQLProducto implements ProductoDAO {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(OBTENERPORNOMBRE);
-			sentencia.setString(1, nombre);
+			sentencia.setString(1, "%"+nombre+"%");
+			resultado = sentencia.executeQuery();
+			while (resultado.next()) {
+				listaProducto.add(convertir(resultado));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+		return listaProducto;
+	}
+	
+	public List<Producto> obtenerProductoTipo(Short id) throws ExcepcionGeneral {
+		List<Producto> listaProducto = new ArrayList<>();
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERPORTIPO);
+			sentencia.setShort(1, id);
 			resultado = sentencia.executeQuery();
 			while (resultado.next()) {
 				listaProducto.add(convertir(resultado));

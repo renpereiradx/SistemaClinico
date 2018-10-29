@@ -16,8 +16,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ProductoRegistroControlador {
 	
@@ -54,13 +54,11 @@ public class ProductoRegistroControlador {
 	
 	public void setProducto(Producto producto) {
 		this.producto = producto;
-		nombreTextField.setText(producto.getNombre());
-		descripcionTextField.setText(producto.getDescripcion());
-		stockTextField.setText(Integer.toString(producto.getStock()));
-		if (producto.getCategoriaProducto().getIdCategoria() == 1) {
-			tipoProductoCB.getSelectionModel().select(1);
-		} else {
-			tipoProductoCB.getSelectionModel().select(2);
+		if (producto.getNombre() != null) {
+			nombreTextField.setText(producto.getNombre());
+			precioTextField.setText(Integer.toString(producto.getPrecio()));
+			descripcionTextField.setText(producto.getDescripcion());
+			stockTextField.setText(Integer.toString(producto.getStock()));
 		}
 	}
 	
@@ -76,9 +74,10 @@ public class ProductoRegistroControlador {
 				producto.setCategoriaProducto(psqlCategoriaProducto.obtenerPorID((short) 1));	
 			}
 			producto.setStock(Integer.parseInt(stockTextField.getText()));
+			okClicked = true;
+			stage.close();
 		}
-		okClicked = true;
-		stage.close();
+		
 	}
 	
 	@FXML private void cancelar() { stage.close(); }
@@ -91,7 +90,7 @@ public class ProductoRegistroControlador {
 		if (precioTextField.getText().isEmpty() || precioTextField.getText() == null) {
 			error += "Precio de Producto vacio\n";			
 		}
-		if (tipoProductoCB.getSelectionModel().getSelectedItem().isEmpty()) {
+		if (tipoProductoCB.getSelectionModel().getSelectedItem() != null) {
 			error += "Categoria Producto no seleccionado\n";
 		}
 		if (error.length() == 0) {
@@ -101,6 +100,7 @@ public class ProductoRegistroControlador {
 			alert.setTitle("Error");
 			alert.setHeaderText("Error al procesar algunos datos");
 			alert.setContentText(error);
+			alert.initStyle(StageStyle.DECORATED);
 			alert.showAndWait();
 			return false;
 		}
