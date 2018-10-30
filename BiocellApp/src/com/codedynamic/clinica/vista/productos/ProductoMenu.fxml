@@ -55,7 +55,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
+                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" onMouseClicked="#mostrarProveedorPrincipal" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="TRUCK" size="2em" styleClass="icons" />
                         <Label styleClass="lbl-sidebar" text="Proveedores">

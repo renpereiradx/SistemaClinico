@@ -15,16 +15,16 @@
 
 <AnchorPane prefHeight="890.0" prefWidth="1400.0" stylesheets="@../Estilos.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView fx:id="tablaProducto" layoutX="117.0" layoutY="139.0" prefHeight="520.0" prefWidth="331.0">
+      <TableView layoutX="117.0" layoutY="139.0" prefHeight="520.0" prefWidth="331.0">
         <columns>
-          <TableColumn fx:id="columnaCodigo" prefWidth="99.0" text="CODIGO" />
-          <TableColumn fx:id="columnaNombre" prefWidth="231.0" text="NOMBRE" />
+          <TableColumn prefWidth="99.0" text="CODIGO" />
+          <TableColumn prefWidth="231.0" text="NOMBRE" />
         </columns>
       </TableView>
       <HBox alignment="BOTTOM_CENTER" layoutX="117.0" layoutY="81.0" prefHeight="26.0" prefWidth="331.0" spacing="30.0">
          <children>
-            <JFXTextField fx:id="nombreProductoTextField" alignment="CENTER" prefWidth="280.0" promptText="BUSCAR POR NOMBRE" />
-            <FontAwesomeIconView glyphName="SEARCH" onMouseClicked="#buscarProductoNombre" size="2em" />
+            <JFXTextField alignment="CENTER" prefWidth="280.0" promptText="BUSCAR POR NOMBRE" />
+            <FontAwesomeIconView glyphName="SEARCH" size="2em" />
          </children>
       </HBox>
       <GridPane layoutX="563.0" layoutY="199.0" prefHeight="255.0" prefWidth="824.0">
@@ -65,24 +65,24 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="codigoLabel" text="Label" GridPane.columnIndex="1" />
-            <Label fx:id="nombreLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="precioLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="descripcionLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="tipoLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Label" GridPane.columnIndex="1" />
+            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <HBox layoutX="692.0" layoutY="726.0" spacing="30.0">
          <children>
-            <JFXButton onAction="#nuevoProducto" prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="NUEVO" />
-            <JFXButton onAction="#editarProducto" prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="EDITAR" />
-            <JFXButton onAction="#eliminarProducto" prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="ELIMINAR" />
+            <JFXButton prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="NUEVO" />
+            <JFXButton prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="EDITAR" />
+            <JFXButton prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="ELIMINAR" />
          </children>
       </HBox>
       <HBox layoutX="153.0" layoutY="726.0" spacing="20.0">
          <children>
-            <JFXButton onAction="#limpiarTabla" prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="LIMPIAR TABLA" />
-            <JFXButton onAction="#listarProductos" prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="LISTAR TODOS" />
+            <JFXButton prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="LIMPIAR TABLA" />
+            <JFXButton prefHeight="50.0" prefWidth="120.0" styleClass="btnsjfx" text="LISTAR TODOS" />
          </children>
       </HBox>
       <Label layoutX="462.0" layoutY="14.0" text="ADMINISTRACION DE PROVEEDORES" AnchorPane.topAnchor="14.0">
