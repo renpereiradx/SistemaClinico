@@ -64,7 +64,6 @@ public class ProductoRegistroControlador {
 	
 	@FXML
 	private void aceptar() {
-		psqlProducto = new PSQLProducto();
 		PSQLCategoriaProducto psqlCategoriaProducto = new PSQLCategoriaProducto();
 		if (validarDatos()) {
 			producto.setNombre(nombreTextField.getText());

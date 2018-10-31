@@ -34,73 +34,59 @@ public class Proveedor {
 	public final IntegerProperty idProveedorProperty() {
 		return this.idProveedor;
 	}
-	
 
 	public final int getIdProveedor() {
 		return this.idProveedorProperty().get();
 	}
 	
-
 	public final void setIdProveedor(final int idProveedor) {
 		this.idProveedorProperty().set(idProveedor);
 	}
 	
-
 	public final StringProperty nombreProperty() {
 		return this.nombre;
 	}
 	
-
 	public final String getNombre() {
 		return this.nombreProperty().get();
 	}
 	
-
 	public final void setNombre(final String nombre) {
 		this.nombreProperty().set(nombre);
 	}
 	
-
 	public final StringProperty rucProperty() {
 		return this.ruc;
 	}
 	
-
 	public final String getRuc() {
 		return this.rucProperty().get();
 	}
 	
-
 	public final void setRuc(final String ruc) {
 		this.rucProperty().set(ruc);
 	}
 	
-
 	public final StringProperty direccionProperty() {
 		return this.direccion;
 	}
 	
-
 	public final String getDireccion() {
 		return this.direccionProperty().get();
 	}
 	
-
 	public final void setDireccion(final String direccion) {
 		this.direccionProperty().set(direccion);
 	}
 	
-
 	public final ListProperty<TelefonoProveedor> telefonoProveedorProperty() {
 		return this.telefonoProveedor;
 	}
 	
-
 	public final ObservableList<TelefonoProveedor> getTelefonoProveedor() {
 		return this.telefonoProveedorProperty().get();
 	}
 	
-
 	public final void setTelefonoProveedor(final ObservableList<TelefonoProveedor> telefonoProveedor) {
 		this.telefonoProveedorProperty().set(telefonoProveedor);
 	}
