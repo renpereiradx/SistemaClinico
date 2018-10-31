@@ -78,7 +78,7 @@ public class PSQLProveedor {
 				sentencia.setString(1, telefonoTemp);
 				sentencia.setShort(2, (short) proveedor.getIdProveedor());
 				sentencia.executeUpdate();
-				proveedor.setTelefonoProveedor(FXCollections.observableArrayList(telefonoProveedor));
+				proveedor.addtTelefonoProveedor(telefonoProveedor);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

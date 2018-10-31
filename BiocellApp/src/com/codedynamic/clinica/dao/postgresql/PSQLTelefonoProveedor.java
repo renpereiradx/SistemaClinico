@@ -9,14 +9,13 @@ import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.TelefonoProveedorDAO;
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
-import com.codedynamic.clinica.modelo.Proveedor;
 import com.codedynamic.clinica.modelo.TelefonoProveedor;
 
 public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 
 	private final String INSERTAR = "INSERT INTO telefono_proveedores(telefono, id_proveedor) VALUES(?, ?)";
-	private final String MODIFICAR = "UPDATE telefono_proveedores SET telefono = ?, id_proveedor = ? WHERE id_proveedor = ?";
-	private final String ELIMINAR = "DELETE FROM telefono_proveedores WHERE id_proveedor = ?";
+	private final String MODIFICAR = "UPDATE telefono_proveedores SET telefono = ? WHERE telefono = ? AND id_proveedor = ? RETURNING telefono";
+	private final String ELIMINAR = "DELETE FROM telefono_proveedores WHERE telefono = ? AND id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT telefono, id_proveedor FROM telefono_proveedores WHERE id_proveedor = ?";
 	
 	private Connection conexion;
@@ -54,7 +53,6 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 		} finally {
 			cerrarConexiones();
 		}
-		
 	}
 	@Override
 	public void eliminar(TelefonoProveedor o) throws ExcepcionGeneral {
@@ -109,6 +107,42 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 			cerrarConexiones();
 		}
 		return telefonoProveedors;		
+	}
+	
+	public void modificarTelefono(String telefono, TelefonoProveedor o) throws ExcepcionGeneral {
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(MODIFICAR);
+			sentencia.setString(1, telefono);
+			sentencia.setString(2, o.getTelefono());
+			sentencia.setShort(3, (short) o.getProveedor().getIdProveedor());
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				o.setTelefono(resultado.getString(1));
+			} else {
+				throw new ExcepcionGeneral("No se modifico ningun registro");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+	}
+	
+	public void eliminarTelefono(TelefonoProveedor o) throws ExcepcionGeneral {
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(MODIFICAR);
+			sentencia.setString(1, o.getTelefono());
+			sentencia.setShort(2, (short) o.getProveedor().getIdProveedor());
+			if (sentencia.executeUpdate() == 0) {
+				throw new ExcepcionGeneral("No se modifico ningun registro");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
 	}
 	
 	private TelefonoProveedor convertir(ResultSet rs) throws SQLException {

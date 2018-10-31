@@ -16,7 +16,7 @@ public class Proveedor {
 	private StringProperty nombre;
 	private StringProperty ruc;
 	private StringProperty direccion;
-	private ListProperty<TelefonoProveedor> telefonoProveedor;
+	private ListProperty<TelefonoProveedor> telefonoProveedor = new SimpleListProperty<>();
 	
 	public Proveedor() {
 		this((short) 0, null, null, null, null);
@@ -87,9 +87,8 @@ public class Proveedor {
 		return this.telefonoProveedorProperty().get();
 	}
 	
-	public final void setTelefonoProveedor(final ObservableList<TelefonoProveedor> telefonoProveedor) {
-		this.telefonoProveedorProperty().set(telefonoProveedor);
+	public final void addtTelefonoProveedor(final TelefonoProveedor telefonoProveedor) {
+		this.telefonoProveedorProperty().add(telefonoProveedor);
 	}
-	
 	
 }

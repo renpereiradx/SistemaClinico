@@ -9,9 +9,11 @@ import com.jfoenix.controls.JFXTextField;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -32,8 +34,8 @@ public class ProveedorRegistroControlador {
 	private MainApp mainApp;
 	private Stage stage;
 	private boolean okClicked = false;
-	private String accion;
 	private PSQLTelefonoProveedor psqlTelefonoProveedor;
+	private ObservableList<TelefonoProveedor> telefonoLista = FXCollections.observableArrayList();
 	
 	public void setMainApp(MainApp mainApp) {
 		this.mainApp = mainApp;
@@ -49,36 +51,100 @@ public class ProveedorRegistroControlador {
 	
 	public void setProveedor(Proveedor proveedor, String accion) {
 		this.proveedor = proveedor;
-		this.accion = accion;
 		if (accion.equals("EDITAR")) {
 			nombreField.setText(proveedor.getNombre());
 			rucField.setText(proveedor.getRuc());
 			direccionField.setText(proveedor.getDireccion());
-			psqlTelefonoProveedor = new PSQLTelefonoProveedor();
-			listaTelefono.setItems(FXCollections
-					.observableArrayList(psqlTelefonoProveedor.obtenerPorID((short) proveedor.getIdProveedor())));
+			telefonoLista.addAll(proveedor.getTelefonoProveedor());
 		}
 	}
 	
 	@FXML
 	private void initialize() {
-		
+		cargarListaTelefono();
+		listaTelefono.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent click) {
+				if (click.getClickCount() == 2) {
+					TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
+					telefonoField.setText(telefonoProveedor.getTelefono());
+				}
+			}
+		});
 	}
 	
 	@FXML
 	private void aceptar() {
-		if (accion.equals("NUEVO")) {
+		if (validacion()) {
 			proveedor.setNombre(nombreField.getText());
 			proveedor.setRuc(rucField.getText());
 			proveedor.setDireccion(direccionField.getText());
-			proveedor.setTelefonoProveedor(listaTelefono.getItems());
 			okClicked = true;
 			stage.close();
 		}
 	}
+
+	@FXML
+	private void cancelar() {
+		stage.close();
+	}
 	
+	@FXML
 	private void insertarTelefono() {
-		
+		if (telefonoField.getText().length() >= 6) {
+			psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+			TelefonoProveedor telefonoProveedor = new TelefonoProveedor();
+			telefonoProveedor.setProveedor(proveedor);
+			telefonoProveedor.setTelefono(telefonoField.getText());
+			proveedor.addtTelefonoProveedor(telefonoProveedor);
+			telefonoLista.add(telefonoProveedor);
+			listaTelefono.getItems().removeAll(telefonoLista);
+			cargarListaTelefono();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("ATENCION");
+			alert.setContentText("Favor introducir numero de telefono, correctamente");
+			alert.setHeaderText("Cuidado con el numero de telefono");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void modificarTelefono() {
+		TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
+		psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+		if (telefonoProveedor != null) {
+			psqlTelefonoProveedor.modificarTelefono(telefonoField.getText(), telefonoProveedor);
+			telefonoLista.add(telefonoProveedor);
+			listaTelefono.getItems().removeAll(telefonoLista);
+			cargarListaTelefono();
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("ATENCION");
+			alert.setHeaderText("Inconveniente al editar");
+			alert.setContentText("No se ha seleccionado un telefono en la lista");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void eliminarTelefono() {
+		psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+		int index = listaTelefono.getSelectionModel().getSelectedIndex();
+		TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
+		if (index >= 0) {
+			psqlTelefonoProveedor.eliminar(telefonoProveedor);
+			telefonoLista.remove(telefonoProveedor);
+			listaTelefono.getItems().remove(index);
+		}
+	}
+	
+	private void cargarListaTelefono() {
+		if (!telefonoLista.isEmpty()) {
+			listaTelefono.setItems(telefonoLista);
+		}
 	}
 	
 	private boolean validacion() {
