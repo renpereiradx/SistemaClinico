@@ -499,6 +499,19 @@ public class MainApp extends Application {
 			return false;
 		}
     }
+    
+    public void mostrarProveedorPrincipal() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/proveedores/ProveedorPrincipal.fxml"));
+			AnchorPane proveedorPane = loader.load();
+			contenedorPrincipal.setCenter(proveedorPane);	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    
 
     public BorderPane getContenedorPrincipal() {
         return contenedorPrincipal;

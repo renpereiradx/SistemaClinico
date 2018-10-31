@@ -13,17 +13,21 @@ import com.codedynamic.clinica.modelo.TelefonoProveedor;
 
 import javafx.collections.FXCollections;
 
-public class PSQLProveedor implements ProveedorDAO{
+public class PSQLProveedor {
 
 	private final String INSERTAR = "INSERT INTO proveedores(nombre, ruc, direccion) VALUES(?, ?, ?) RETURNING id_proveedor, nombre, ruc, direccion";
-	private final String MODIFICAR = "UPDATE proveedores SET nombre = ?, ruc = ?, direccion = ? WHERE id_proveedor = ?";
+	private final String MODIFICAR = "UPDATE proveedores SET nombre = ?, ruc = ?, direccion = ? WHERE id_proveedor = ? RETURNING id_proveedor, "
+			+ "nombre, ruc, direccion";
 	private final String ELIMINAR = "DELETE FROM proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores WHERE id_proveedor = ?";
 	private final String INSERTARTELEFONO = "INSERT INTO telefono_proveedores(telefono, id_proveedor) VALUES(?, ?)";
+	private final String MODIFICARTELEFONO = "UPDATE telefono_proveedores SET telefono = ? WHERE telefono = ?";
 	
 	private Connection conexion;
 	private PreparedStatement sentencia;
 	private ResultSet resultado;
+	
+	private PSQLTelefonoProveedor psqlTelefonoProveedor;
 	
 	public Proveedor insertarProveedores(List<String> telefono, Proveedor proveedor) {
 		Proveedor proveedor2 = null;
@@ -33,6 +37,12 @@ public class PSQLProveedor implements ProveedorDAO{
 		} catch (ExcepcionGeneral e) {
 			throw new ExcepcionGeneral("Error al insertar Proveedor " + e.getMessage());
 		}
+		return proveedor2;
+	}
+	
+	public Proveedor modificarProveedor(List<String> telefono, Proveedor proveedor) {
+		Proveedor proveedor2 = null;
+		
 		return proveedor2;
 	}
 	
@@ -75,15 +85,17 @@ public class PSQLProveedor implements ProveedorDAO{
 		}
 	}
 	
-	@Override
-	public void insertar(Proveedor o) throws ExcepcionGeneral {
+	public void insertar(Proveedor proveedor) {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(INSERTAR);
-			sentencia.setString(1, o.getNombre());
-			sentencia.setString(2, o.getRuc());
-			sentencia.setString(3, o.getDireccion());
-			if (sentencia.executeUpdate() == 0) {
+			sentencia.setString(1, proveedor.getNombre());
+			sentencia.setString(2, proveedor.getRuc());
+			sentencia.setString(3, proveedor.getDireccion());
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				proveedor.setIdProveedor(resultado.getShort(1));
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {
@@ -93,8 +105,7 @@ public class PSQLProveedor implements ProveedorDAO{
 		}
 	}
 
-	@Override
-	public void modificar(Proveedor o) throws ExcepcionGeneral {
+	private void modificar(Proveedor o) throws ExcepcionGeneral {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(MODIFICAR);
@@ -110,10 +121,8 @@ public class PSQLProveedor implements ProveedorDAO{
 		} finally {
 			cerrarConexiones();
 		}
-		
 	}
 
-	@Override
 	public void eliminar(Proveedor o) throws ExcepcionGeneral{
 		try {
 			conexion = new PSQLConexion().conectar();
@@ -129,7 +138,6 @@ public class PSQLProveedor implements ProveedorDAO{
 		}
 	}
 
-	@Override
 	public Proveedor obtenerPorID(Short k) {
 		Proveedor proveedor = null;
 		try {

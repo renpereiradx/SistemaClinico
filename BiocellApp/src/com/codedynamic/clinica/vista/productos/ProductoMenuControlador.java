@@ -26,4 +26,10 @@ public class ProductoMenuControlador {
 		mainApp.getContenedorPrincipal().setCenter(null);
 		mainApp.showHome();
 	}
+	
+	@FXML
+	private void mostrarProveedorPrincipal() {
+		mainApp.getContenedorPrincipal().setCenter(null);
+		mainApp.mostrarProveedorPrincipal();
+	}
 }
