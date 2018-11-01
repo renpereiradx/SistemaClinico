@@ -59,7 +59,8 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(ELIMINAR);
-			sentencia.setShort(1, (short) o.getProveedor().getIdProveedor());
+			sentencia.setString(1, o.getTelefono());
+			sentencia.setShort(2, (short) o.getProveedor().getIdProveedor());
 			if (sentencia.executeUpdate() == 0) {
 				throw new ExcepcionGeneral("No se elimino ningun registro");
 			}

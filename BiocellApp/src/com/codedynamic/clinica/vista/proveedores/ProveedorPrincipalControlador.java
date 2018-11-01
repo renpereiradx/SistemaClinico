@@ -2,16 +2,22 @@ package com.codedynamic.clinica.vista.proveedores;
 
 import java.util.List;
 
+import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLProveedor;
 import com.codedynamic.clinica.dao.postgresql.PSQLTelefonoProveedor;
 import com.codedynamic.clinica.modelo.Proveedor;
 import com.codedynamic.clinica.modelo.TelefonoProveedor;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.StageStyle;
+import javafx.scene.control.Alert.AlertType;
 
 public class ProveedorPrincipalControlador {
 	
@@ -34,18 +40,65 @@ public class ProveedorPrincipalControlador {
 	@FXML
 	private JFXTextField nombreTextField;
 	
-	private Proveedor proveedor;
 	private PSQLProveedor psqlProveedor;
-	private PSQLTelefonoProveedor psqlTelefono;
+	private PSQLTelefonoProveedor psqlTelefonoProveedor;
+	private MainApp mainApp;
+	private ObservableList<Proveedor> listaProveedor = FXCollections.observableArrayList();
+	
+	public void setMainApp(MainApp mainApp) {
+		this.mainApp = mainApp;
+	}
 	
 	
 	@FXML
 	private void initialize() {
+		mostrarDatosProveedor(null);
 		mostrarTabla();
 	}
 	
 	@FXML
 	private void nuevoProveedor() {
+		Proveedor proveedorTemp = new Proveedor();
+		boolean okClicked = mainApp.mostrarRegistroProveedor("NUEVO", proveedorTemp);
+		if (okClicked) {
+			psqlProveedor = new PSQLProveedor();
+			psqlProveedor.insertar(proveedorTemp);
+			if (!proveedorTemp.getTelefonoProveedor().isEmpty()) {
+				psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+				for (TelefonoProveedor proveedor : proveedorTemp.getTelefonoProveedor()) {
+					psqlTelefonoProveedor.insertar(proveedor);
+				}
+			}
+			listaProveedor.add(proveedorTemp);
+			if (tablaProveedor.getSelectionModel().getSelectedIndex() < 0) {
+				tablaProveedor.setItems(listaProveedor);
+			}
+		}
+	}
+	
+	@FXML
+	private void editarProveedor() {
+		Proveedor proveedorSelec= tablaProveedor.getSelectionModel().getSelectedItem();
+		if (proveedorSelec != null) {
+			boolean okClicked = mainApp.mostrarRegistroProveedor("EDITAR", proveedorSelec);
+			if (okClicked) {
+				psqlProveedor = new PSQLProveedor();
+				psqlProveedor.modificar(proveedorSelec);
+				mostrarDatosProveedor(proveedorSelec);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("ATENCION");
+			alert.setHeaderText("Proveedor no seleccionado");
+			alert.setContentText("Selecciona un proveedor para modificarlo");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void bucarProveedores() {
+		psqlProveedor = new PSQLProveedor();
 		
 	}
 	
@@ -61,7 +114,23 @@ public class ProveedorPrincipalControlador {
 			nombreLabel.setText(proveedor.getNombre());
 			rucLabel.setText(proveedor.getRuc());
 			direccionLabel.setText(proveedor.getDireccion());
-			mostrarDatosTelefono(proveedor);
+			if (!proveedor.getTelefonoProveedor().isEmpty()) {
+				String telefono = "";
+				for (TelefonoProveedor telefonoProveedor : proveedor.getTelefonoProveedor()) {
+					telefono += telefonoProveedor.getTelefono() + " - ";
+				}
+				telefonoLabel.setText(telefono);
+			} else {
+				psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+				String telefono = "";
+				if (!psqlTelefonoProveedor.obtenerLista((short) proveedor.getIdProveedor()).isEmpty()) {
+					for (TelefonoProveedor telefonoProveedor : psqlTelefonoProveedor.obtenerLista((short) proveedor.getIdProveedor())) {
+						telefono += telefonoProveedor.getTelefono() + " - ";
+						proveedor.setTelefonoProveedor(telefonoProveedor);
+					}
+					telefonoLabel.setText(telefono);
+				}
+			}
 		} else {
 			codigoLabel.setText("");
 			nombreLabel.setText("");
@@ -70,17 +139,4 @@ public class ProveedorPrincipalControlador {
 			telefonoLabel.setText("");
 		}
 	}
-	
-	private void mostrarDatosTelefono(Proveedor proveedor) {
-		psqlTelefono = new PSQLTelefonoProveedor();
-		List<TelefonoProveedor> telefonoProveedors = psqlTelefono.obtenerLista((short) proveedor.getIdProveedor());
-		String listaTelefono = "";
-		if (!telefonoProveedors.isEmpty()) {
-			for (TelefonoProveedor proveedor2 : telefonoProveedors) {
-				listaTelefono += proveedor2.getTelefono() + "   ";
-			} 
-		}
-		telefonoLabel.setText(listaTelefono);
-	}
-	
 }

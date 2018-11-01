@@ -1,6 +1,5 @@
 package com.codedynamic.clinica.vista.proveedores;
 
-import com.codedynamic.clinica.MainApp;
 import com.codedynamic.clinica.dao.postgresql.PSQLTelefonoProveedor;
 import com.codedynamic.clinica.modelo.Proveedor;
 import com.codedynamic.clinica.modelo.TelefonoProveedor;
@@ -31,15 +30,10 @@ public class ProveedorRegistroControlador {
 	private JFXListView<TelefonoProveedor> listaTelefono;
 	
 	private Proveedor proveedor;
-	private MainApp mainApp;
 	private Stage stage;
 	private boolean okClicked = false;
 	private PSQLTelefonoProveedor psqlTelefonoProveedor;
 	private ObservableList<TelefonoProveedor> telefonoLista = FXCollections.observableArrayList();
-	
-	public void setMainApp(MainApp mainApp) {
-		this.mainApp = mainApp;
-	}
 	
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -65,9 +59,19 @@ public class ProveedorRegistroControlador {
 		listaTelefono.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {
-				if (click.getClickCount() == 2) {
-					TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
-					telefonoField.setText(telefonoProveedor.getTelefono());
+				if (!listaTelefono.getItems().isEmpty()) {
+					if (click.getClickCount() == 2) {
+						TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
+						telefonoField.setText("");
+						telefonoField.setText(telefonoProveedor.getTelefono());
+					} 
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("ATENCION");
+					alert.setHeaderText("ATENCION");
+					alert.setContentText("Asegurese de que la tabla este cargada antes de hacer doble click");
+					alert.initStyle(StageStyle.DECORATED);
+					alert.showAndWait();
 				}
 			}
 		});
@@ -96,9 +100,9 @@ public class ProveedorRegistroControlador {
 			TelefonoProveedor telefonoProveedor = new TelefonoProveedor();
 			telefonoProveedor.setProveedor(proveedor);
 			telefonoProveedor.setTelefono(telefonoField.getText());
-			proveedor.addtTelefonoProveedor(telefonoProveedor);
-			telefonoLista.add(telefonoProveedor);
+			proveedor.setTelefonoProveedor(telefonoProveedor);
 			listaTelefono.getItems().removeAll(telefonoLista);
+			telefonoLista.add(telefonoProveedor);
 			cargarListaTelefono();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
@@ -138,6 +142,13 @@ public class ProveedorRegistroControlador {
 			psqlTelefonoProveedor.eliminar(telefonoProveedor);
 			telefonoLista.remove(telefonoProveedor);
 			listaTelefono.getItems().remove(index);
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("ATENCION");
+			alert.setHeaderText("ATENCION");
+			alert.setContentText("Asegurese de seleccionar un elemento");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
 		}
 	}
 	

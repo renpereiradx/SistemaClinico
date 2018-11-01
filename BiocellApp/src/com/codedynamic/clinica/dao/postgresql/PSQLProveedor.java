@@ -20,6 +20,7 @@ public class PSQLProveedor {
 			+ "nombre, ruc, direccion";
 	private final String ELIMINAR = "DELETE FROM proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores WHERE id_proveedor = ?";
+	private final String OBTENERPORNOMBRE = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores WHERE nombre ILIKE ?";
 	private final String INSERTARTELEFONO = "INSERT INTO telefono_proveedores(telefono, id_proveedor) VALUES(?, ?)";
 	private final String MODIFICARTELEFONO = "UPDATE telefono_proveedores SET telefono = ? WHERE telefono = ?";
 	
@@ -78,7 +79,7 @@ public class PSQLProveedor {
 				sentencia.setString(1, telefonoTemp);
 				sentencia.setShort(2, (short) proveedor.getIdProveedor());
 				sentencia.executeUpdate();
-				proveedor.addtTelefonoProveedor(telefonoProveedor);
+				proveedor.setTelefonoProveedor(telefonoProveedor);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,7 +106,7 @@ public class PSQLProveedor {
 		}
 	}
 
-	private void modificar(Proveedor o) throws ExcepcionGeneral {
+	public void modificar(Proveedor o) throws ExcepcionGeneral {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(MODIFICAR);
@@ -156,6 +157,21 @@ public class PSQLProveedor {
 			cerrarConexiones();
 		}
 		return proveedor;
+	}
+	
+	public List<Proveedor> obtenerPorNombre(String nombre) {
+		List<Proveedor> lista = null;
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia.setString(1, "%"+nombre+"%");
+			resultado = sentencia.executeQuery();
+			/*for (resultado.next()) {
+				lista = convertir(resultado);
+			}*/
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lista;
 	}
 	
 	private Proveedor convertir(ResultSet rs) throws SQLException {

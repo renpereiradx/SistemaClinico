@@ -24,6 +24,8 @@ import com.codedynamic.clinica.vista.paciente.antecedente.AntecedenteQuirurgicoC
 import com.codedynamic.clinica.vista.productos.ProductoMenuControlador;
 import com.codedynamic.clinica.vista.productos.ProductoPrincipalControlador;
 import com.codedynamic.clinica.vista.productos.ProductoRegistroControlador;
+import com.codedynamic.clinica.vista.proveedores.ProveedorPrincipalControlador;
+import com.codedynamic.clinica.vista.proveedores.ProveedorRegistroControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoFechaControlador;
 import com.codedynamic.clinica.vista.turno.TurnoDescripcionControlador;
@@ -506,12 +508,33 @@ public class MainApp extends Application {
 			loader.setLocation(MainApp.class.getResource("vista/proveedores/ProveedorPrincipal.fxml"));
 			AnchorPane proveedorPane = loader.load();
 			contenedorPrincipal.setCenter(proveedorPane);	
+			ProveedorPrincipalControlador proveedorPrincipalControlador = loader.getController();
+			proveedorPrincipalControlador.setMainApp(this);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
     }
     
-    
+    public boolean mostrarRegistroProveedor(String accion, Proveedor proveedor) {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/proveedores/ProveedorRegistro.fxml"));
+			AnchorPane registroPane = loader.load();
+			Stage registroStage = new Stage();
+			registroStage.setTitle("Registro de Proveedores");
+			registroStage.initOwner(primaryStage);
+			Scene registroScene = new Scene(registroPane);
+			registroStage.setScene(registroScene);
+			ProveedorRegistroControlador controlador = loader.getController();
+			controlador.setStage(registroStage);
+			controlador.setProveedor(proveedor, accion);
+			registroStage.showAndWait();
+			return controlador.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+    }
 
     public BorderPane getContenedorPrincipal() {
         return contenedorPrincipal;
