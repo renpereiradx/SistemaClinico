@@ -150,7 +150,7 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 		TelefonoProveedor telefono = new TelefonoProveedor();
 		PSQLProveedor proveedor = new PSQLProveedor();
 		telefono.setProveedor(proveedor.obtenerPorID(rs.getShort("id_proveedor")));
-		telefono.setTelefono("telefono");
+		telefono.setTelefono(rs.getString("telefono"));
 		return telefono;
 	}
 	

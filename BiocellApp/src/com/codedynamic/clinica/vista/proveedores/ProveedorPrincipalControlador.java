@@ -1,5 +1,6 @@
 package com.codedynamic.clinica.vista.proveedores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.codedynamic.clinica.MainApp;
@@ -99,7 +100,13 @@ public class ProveedorPrincipalControlador {
 	@FXML
 	private void bucarProveedores() {
 		psqlProveedor = new PSQLProveedor();
-		
+		if (!nombreTextField.getText().isEmpty()) {
+			System.out.println(nombreTextField.getText());
+			listaProveedor.addAll(psqlProveedor.obtenerPorNombre(nombreTextField.getText()));
+			if (!listaProveedor.isEmpty()) {
+				tablaProveedor.setItems(listaProveedor);
+			}
+		}
 	}
 	
 	private void mostrarTabla() {
@@ -122,9 +129,10 @@ public class ProveedorPrincipalControlador {
 				telefonoLabel.setText(telefono);
 			} else {
 				psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+				List<TelefonoProveedor> telefonos = psqlTelefonoProveedor.obtenerLista((short) proveedor.getIdProveedor());
 				String telefono = "";
-				if (!psqlTelefonoProveedor.obtenerLista((short) proveedor.getIdProveedor()).isEmpty()) {
-					for (TelefonoProveedor telefonoProveedor : psqlTelefonoProveedor.obtenerLista((short) proveedor.getIdProveedor())) {
+				if (!telefonos.isEmpty()) {
+					for (TelefonoProveedor telefonoProveedor : telefonos) {
 						telefono += telefonoProveedor.getTelefono() + " - ";
 						proveedor.setTelefonoProveedor(telefonoProveedor);
 					}
