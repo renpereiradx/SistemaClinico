@@ -3,9 +3,7 @@ package com.codedynamic.clinica.modelo;
 import java.util.List;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -16,19 +14,18 @@ public class Proveedor {
 	private StringProperty nombre;
 	private StringProperty ruc;
 	private StringProperty direccion;
-	private ListProperty<TelefonoProveedor> telefonoProveedor;
+	private ObservableList<TelefonoProveedor> telefonoProveedor = FXCollections.observableArrayList();
 	
 	public Proveedor() {
-		this((short) 0, null, null, null, null);
+		this((short) 0, null, null, null);
 	}
 
-	public Proveedor(short idProveedor, String nombre, String ruc, String direccion, List<TelefonoProveedor> telefonoProveedor) {
+	public Proveedor(short idProveedor, String nombre, String ruc, String direccion) {
 		super();
 		this.idProveedor = new SimpleIntegerProperty(idProveedor);
 		this.nombre = new SimpleStringProperty(nombre);
 		this.ruc = new SimpleStringProperty(ruc);
 		this.direccion = new SimpleStringProperty(direccion);
-		this.telefonoProveedor = new SimpleListProperty<>(FXCollections.observableArrayList(telefonoProveedor));
 	}
 
 	public final IntegerProperty idProveedorProperty() {
@@ -78,18 +75,13 @@ public class Proveedor {
 	public final void setDireccion(final String direccion) {
 		this.direccionProperty().set(direccion);
 	}
-	
-	public final ListProperty<TelefonoProveedor> telefonoProveedorProperty() {
-		return this.telefonoProveedor;
+
+	public ObservableList<TelefonoProveedor> getTelefonoProveedor() {
+		return telefonoProveedor;
 	}
-	
-	public final ObservableList<TelefonoProveedor> getTelefonoProveedor() {
-		return this.telefonoProveedorProperty().get();
+
+	public void setTelefonoProveedor(TelefonoProveedor telefonoProveedor) {
+		this.telefonoProveedor.add(telefonoProveedor);
 	}
-	
-	public final void setTelefonoProveedor(final ObservableList<TelefonoProveedor> telefonoProveedor) {
-		this.telefonoProveedorProperty().set(telefonoProveedor);
-	}
-	
-	
+		
 }
