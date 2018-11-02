@@ -32,6 +32,7 @@ public class ProveedorRegistroControlador {
 	private Proveedor proveedor;
 	private Stage stage;
 	private boolean okClicked = false;
+	private String accion;
 	private PSQLTelefonoProveedor psqlTelefonoProveedor;
 	private ObservableList<TelefonoProveedor> telefonoLista = FXCollections.observableArrayList();
 	
@@ -45,17 +46,18 @@ public class ProveedorRegistroControlador {
 	
 	public void setProveedor(Proveedor proveedor, String accion) {
 		this.proveedor = proveedor;
+		this.accion = accion;
 		if (accion.equals("EDITAR")) {
 			nombreField.setText(proveedor.getNombre());
 			rucField.setText(proveedor.getRuc());
 			direccionField.setText(proveedor.getDireccion());
 			telefonoLista.addAll(proveedor.getTelefonoProveedor());
+			cargarListaTelefono();
 		}
 	}
 	
 	@FXML
 	private void initialize() {
-		cargarListaTelefono();
 		listaTelefono.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent click) {
@@ -96,14 +98,19 @@ public class ProveedorRegistroControlador {
 	@FXML
 	private void insertarTelefono() {
 		if (telefonoField.getText().length() >= 6) {
-			psqlTelefonoProveedor = new PSQLTelefonoProveedor();
 			TelefonoProveedor telefonoProveedor = new TelefonoProveedor();
 			telefonoProveedor.setProveedor(proveedor);
 			telefonoProveedor.setTelefono(telefonoField.getText());
-			proveedor.setTelefonoProveedor(telefonoProveedor);
-			listaTelefono.getItems().removeAll(telefonoLista);
-			telefonoLista.add(telefonoProveedor);
-			cargarListaTelefono();
+			if (accion.equals("NUEVO")) {
+				proveedor.setTelefonoProveedor(telefonoProveedor);
+				telefonoLista.add(telefonoProveedor);
+				cargarListaTelefono();
+			} else {
+				psqlTelefonoProveedor = new PSQLTelefonoProveedor();
+				psqlTelefonoProveedor.insertar(telefonoProveedor);
+				proveedor.setTelefonoProveedor(telefonoProveedor);
+				telefonoLista.add(telefonoProveedor);
+			}
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("ATENCION");
@@ -119,10 +126,9 @@ public class ProveedorRegistroControlador {
 		TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
 		psqlTelefonoProveedor = new PSQLTelefonoProveedor();
 		if (telefonoProveedor != null) {
-			psqlTelefonoProveedor.modificarTelefono(telefonoField.getText(), telefonoProveedor);
+			telefonoLista.remove(telefonoProveedor);
+			psqlTelefonoProveedor.modificarTelefono(telefonoField.getText(), telefonoProveedor);	
 			telefonoLista.add(telefonoProveedor);
-			listaTelefono.getItems().removeAll(telefonoLista);
-			cargarListaTelefono();
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("ATENCION");
@@ -139,9 +145,11 @@ public class ProveedorRegistroControlador {
 		int index = listaTelefono.getSelectionModel().getSelectedIndex();
 		TelefonoProveedor telefonoProveedor = listaTelefono.getSelectionModel().getSelectedItem();
 		if (index >= 0) {
-			psqlTelefonoProveedor.eliminar(telefonoProveedor);
+			if (accion.equals("EDITAR")) {
+				psqlTelefonoProveedor.eliminar(telefonoProveedor);
+			}
 			telefonoLista.remove(telefonoProveedor);
-			listaTelefono.getItems().remove(index);
+			proveedor.getTelefonoProveedor().remove(telefonoProveedor);
 		} else {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("ATENCION");

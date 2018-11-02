@@ -39,7 +39,7 @@
                   <HBox alignment="CENTER_LEFT" onMouseClicked="#mostrarAdminProducto" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="PLUS_SQUARE" size="2em" styleClass="icons" />
-                        <Label styleClass="lbl-sidebar" text="Admin. Producto">
+                        <Label styleClass="lbl-sidebar" text="Productos">
                            <font>
                               <Font name="Calibri Bold" size="19.0" />
                            </font>

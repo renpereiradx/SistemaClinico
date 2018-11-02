@@ -1,6 +1,5 @@
 package com.codedynamic.clinica.vista.proveedores;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.codedynamic.clinica.MainApp;
@@ -50,7 +49,6 @@ public class ProveedorPrincipalControlador {
 		this.mainApp = mainApp;
 	}
 	
-	
 	@FXML
 	private void initialize() {
 		mostrarDatosProveedor(null);
@@ -98,6 +96,24 @@ public class ProveedorPrincipalControlador {
 	}
 	
 	@FXML
+	private void eliminarProveedor() {
+		int index = tablaProveedor.getSelectionModel().getSelectedIndex();
+		Proveedor proveedorSelec = tablaProveedor.getSelectionModel().getSelectedItem();
+		if (index >= 0) {
+			psqlTelefonoProveedor.eliminarTodo(proveedorSelec);
+			psqlProveedor.eliminar(proveedorSelec);
+			tablaProveedor.getItems().remove(index);
+		} else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("ATENCION");
+			alert.setHeaderText("ATENCION");
+			alert.setContentText("Ya no quedan elementos por eliminar");
+			alert.initStyle(StageStyle.DECORATED);
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
 	private void bucarProveedores() {
 		psqlProveedor = new PSQLProveedor();
 		if (!nombreTextField.getText().isEmpty()) {
@@ -106,6 +122,16 @@ public class ProveedorPrincipalControlador {
 			if (!listaProveedor.isEmpty()) {
 				tablaProveedor.setItems(listaProveedor);
 			}
+		}
+	}
+	
+	@FXML
+	private void listarProveedores() {
+		psqlProveedor = new PSQLProveedor();
+		listaProveedor.addAll(psqlProveedor.obtenerTodos());
+		if (!listaProveedor.isEmpty()) {
+			tablaProveedor.getItems().removeAll(listaProveedor);
+			tablaProveedor.setItems(listaProveedor);
 		}
 	}
 	
@@ -124,7 +150,7 @@ public class ProveedorPrincipalControlador {
 			if (!proveedor.getTelefonoProveedor().isEmpty()) {
 				String telefono = "";
 				for (TelefonoProveedor telefonoProveedor : proveedor.getTelefonoProveedor()) {
-					telefono += telefonoProveedor.getTelefono() + " - ";
+					telefono += telefonoProveedor.getTelefono() + "\n";
 				}
 				telefonoLabel.setText(telefono);
 			} else {
@@ -133,7 +159,7 @@ public class ProveedorPrincipalControlador {
 				String telefono = "";
 				if (!telefonos.isEmpty()) {
 					for (TelefonoProveedor telefonoProveedor : telefonos) {
-						telefono += telefonoProveedor.getTelefono() + " - ";
+						telefono += telefonoProveedor.getTelefono() + "\n";
 						proveedor.setTelefonoProveedor(telefonoProveedor);
 					}
 					telefonoLabel.setText(telefono);
