@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.ProveedorDAO;
@@ -160,16 +161,19 @@ public class PSQLProveedor {
 	}
 	
 	public List<Proveedor> obtenerPorNombre(String nombre) {
-		List<Proveedor> lista = null;
+		List<Proveedor> lista = new ArrayList<>();
 		try {
 			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERPORNOMBRE);
 			sentencia.setString(1, "%"+nombre+"%");
 			resultado = sentencia.executeQuery();
-			/*for (resultado.next()) {
-				lista = convertir(resultado);
-			}*/
+			while (resultado.next()) {
+				lista.add(convertir(resultado));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
 		}
 		return lista;
 	}
