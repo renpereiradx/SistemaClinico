@@ -17,11 +17,11 @@ import javafx.collections.FXCollections;
 public class PSQLProveedor {
 
 	private final String INSERTAR = "INSERT INTO proveedores(nombre, ruc, direccion) VALUES(?, ?, ?) RETURNING id_proveedor, nombre, ruc, direccion";
-	private final String MODIFICAR = "UPDATE proveedores SET nombre = ?, ruc = ?, direccion = ? WHERE id_proveedor = ? RETURNING id_proveedor, "
-			+ "nombre, ruc, direccion";
+	private final String MODIFICAR = "UPDATE proveedores SET nombre = ?, ruc = ?, direccion = ? WHERE id_proveedor = ?";
 	private final String ELIMINAR = "DELETE FROM proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORNOMBRE = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores WHERE nombre ILIKE ?";
+	private final String OBTENERTODOS = "SELECT id_proveedor, nombre, ruc, direccion FROM proveedores;";
 	private final String INSERTARTELEFONO = "INSERT INTO telefono_proveedores(telefono, id_proveedor) VALUES(?, ?)";
 	private final String MODIFICARTELEFONO = "UPDATE telefono_proveedores SET telefono = ? WHERE telefono = ?";
 	
@@ -166,6 +166,23 @@ public class PSQLProveedor {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(OBTENERPORNOMBRE);
 			sentencia.setString(1, "%"+nombre+"%");
+			resultado = sentencia.executeQuery();
+			while (resultado.next()) {
+				lista.add(convertir(resultado));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
+		return lista;
+	}
+	
+	public List<Proveedor> obtenerTodos() {
+		List<Proveedor> lista = new ArrayList<>();
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(OBTENERTODOS);
 			resultado = sentencia.executeQuery();
 			while (resultado.next()) {
 				lista.add(convertir(resultado));

@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.TelefonoProveedorDAO;
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
+import com.codedynamic.clinica.modelo.Proveedor;
 import com.codedynamic.clinica.modelo.TelefonoProveedor;
 
 public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
@@ -16,6 +17,7 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 	private final String INSERTAR = "INSERT INTO telefono_proveedores(telefono, id_proveedor) VALUES(?, ?)";
 	private final String MODIFICAR = "UPDATE telefono_proveedores SET telefono = ? WHERE telefono = ? AND id_proveedor = ? RETURNING telefono";
 	private final String ELIMINAR = "DELETE FROM telefono_proveedores WHERE telefono = ? AND id_proveedor = ?";
+	private final String ELIMINARTODO = "DELETE FROM telefono_proveedores WHERE id_proveedor = ?";
 	private final String OBTENERPORID = "SELECT telefono, id_proveedor FROM telefono_proveedores WHERE id_proveedor = ?";
 	
 	private Connection conexion;
@@ -69,7 +71,20 @@ public class PSQLTelefonoProveedor implements TelefonoProveedorDAO {
 		} finally {
 			cerrarConexiones();
 		}
-		
+	}
+	public void eliminarTodo(Proveedor proveedor) throws ExcepcionGeneral {
+		try {
+			conexion = new PSQLConexion().conectar();
+			sentencia = conexion.prepareStatement(ELIMINARTODO);
+			sentencia.setShort(1, (short) proveedor.getIdProveedor());
+			if (sentencia.executeUpdate() == 0) {
+				throw new ExcepcionGeneral("No se elimino ningun registro");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			cerrarConexiones();
+		}
 	}
 	@Override
 	public TelefonoProveedor obtenerPorID(Short k) throws ExcepcionGeneral {
