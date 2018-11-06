@@ -52,6 +52,77 @@ public class FacturaTratamiento {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public final IntegerProperty idFacturaTProperty() {
+		return this.idFacturaT;
+	}
 	
+	public final int getIdFacturaT() {
+		return this.idFacturaTProperty().get();
+	}
 	
+	public final void setIdFacturaT(final int idFacturaT) {
+		this.idFacturaTProperty().set(idFacturaT);
+	}
+	
+	public final ObjectProperty<LocalDate> fechaProperty() {
+		return this.fecha;
+	}
+	
+	public final LocalDate getFecha() {
+		return this.fechaProperty().get();
+	}
+	
+	public final void setFecha(final LocalDate fecha) {
+		this.fechaProperty().set(fecha);
+	}
+	
+	public final ObjectProperty<LocalTime> horaProperty() {
+		return this.hora;
+	}
+	
+	public final LocalTime getHora() {
+		return this.horaProperty().get();
+	}	
+
+	public final void setHora(final LocalTime hora) {
+		this.horaProperty().set(hora);
+	}
+	
+	public final StringProperty detalleProperty() {
+		return this.detalle;
+	}
+	
+	public final String getDetalle() {
+		return this.detalleProperty().get();
+	}
+	
+	public final void setDetalle(final String detalle) {
+		this.detalleProperty().set(detalle);
+	}
+	
+	public final IntegerProperty totalProperty() {
+		return this.total;
+	}
+	
+
+	public final int getTotal() {
+		return this.totalProperty().get();
+	}
+
+	public final void setTotal(final int total) {
+		this.totalProperty().set(total);
+	}
+	
+	public final StringProperty estadoProperty() {
+		return this.estado;
+	}
+	
+	public final String getEstado() {
+		return this.estadoProperty().get();
+	}
+	
+	public final void setEstado(final String estado) {
+		this.estadoProperty().set(estado);
+	}
 }	
