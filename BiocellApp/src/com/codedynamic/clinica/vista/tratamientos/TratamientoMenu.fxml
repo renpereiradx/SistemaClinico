@@ -39,26 +39,7 @@
                   <HBox alignment="CENTER_LEFT" onMouseClicked="#mostrarMedicoPrincipal" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
                      <children>
                         <FontAwesomeIconView glyphName="CART_PLUS" size="2em" styleClass="icons" />
-                        <Label onMouseClicked="#mostrarMedicoPrincipal" styleClass="lbl-sidebar" text="Compra">
-                           <font>
-                              <Font name="Calibri Bold" size="23.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="20.0" prefHeight="60.0" prefWidth="250.0" spacing="7.0" styleClass="btns">
-                     <children>
-                        <FontAwesomeIconView glyphName="SITEMAP" size="2em" styleClass="icons" />
-                        <Label styleClass="lbl-sidebar" text="Combos">
+                        <Label onMouseClicked="#mostrarMedicoPrincipal" styleClass="lbl-sidebar" text="Facturar">
                            <font>
                               <Font name="Calibri Bold" size="23.0" />
                            </font>

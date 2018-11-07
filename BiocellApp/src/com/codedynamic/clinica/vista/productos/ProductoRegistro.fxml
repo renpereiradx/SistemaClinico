@@ -20,7 +20,7 @@
             </Label>
          </children>
       </Pane>
-      <JFXTextField fx:id="nombreTextField" alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="30.0" prefWidth="200.0" promptText="NOMBRE" />
+      <JFXTextField fx:id="nombreTextField" alignment="CENTER" layoutX="14.0" layoutY="64.0" prefHeight="30.0" prefWidth="300.0" promptText="NOMBRE" />
       <JFXTextField fx:id="precioTextField" alignment="CENTER" layoutX="14.0" layoutY="114.0" prefHeight="30.0" prefWidth="200.0" promptText="PRECIO" />
       <JFXTextField fx:id="descripcionTextField" alignment="CENTER" layoutX="15.0" layoutY="164.0" prefHeight="30.0" prefWidth="509.0" promptText="DESCRIPCION" />
       <JFXComboBox fx:id="tipoProductoCB" layoutX="345.0" layoutY="64.0" prefHeight="30.0" promptText="TIPO DE PRODUCTO" />

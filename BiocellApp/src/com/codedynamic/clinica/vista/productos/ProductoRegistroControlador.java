@@ -67,12 +67,18 @@ public class ProductoRegistroControlador {
 		PSQLCategoriaProducto psqlCategoriaProducto = new PSQLCategoriaProducto();
 		if (validarDatos()) {
 			producto.setNombre(nombreTextField.getText());
-			producto.setPrecio(Integer.parseInt(precioTextField.getText()));
+			if (!(precioTextField.getText().isEmpty() || precioTextField.getText() == null)) {
+				producto.setPrecio(Integer.parseInt(precioTextField.getText()));
+			}
 			producto.setDescripcion(descripcionTextField.getText());
 			if (tipoProductoCB.getSelectionModel().getSelectedItem().equals("MEDICAMENTOS")) {
 				producto.setCategoriaProducto(psqlCategoriaProducto.obtenerPorID((short) 1));	
+			} else if (tipoProductoCB.getSelectionModel().getSelectedItem().equals("ENFERMERIA")) {
+				producto.setCategoriaProducto(psqlCategoriaProducto.obtenerPorID((short) 2));
 			}
-			producto.setStock(Integer.parseInt(stockTextField.getText()));
+			if (!(stockTextField.getText().isEmpty() || stockTextField.getText() == null)) {
+				producto.setStock(Integer.parseInt(stockTextField.getText()));
+			}
 			okClicked = true;
 			stage.close();
 		}
@@ -83,13 +89,11 @@ public class ProductoRegistroControlador {
 	
 	private boolean validarDatos() {
 		String error = "";
+		String categoria = tipoProductoCB.getSelectionModel().getSelectedItem();
 		if (nombreTextField.getText().isEmpty() || nombreTextField.getText() == null) {
 			error += "Nombre de Producto vacio\n";
 		}
-		if (precioTextField.getText().isEmpty() || precioTextField.getText() == null) {
-			error += "Precio de Producto vacio\n";			
-		}
-		if (tipoProductoCB.getSelectionModel().getSelectedItem() != null) {
+		if (categoria == null) {
 			error += "Categoria Producto no seleccionado\n";
 		}
 		if (error.length() == 0) {

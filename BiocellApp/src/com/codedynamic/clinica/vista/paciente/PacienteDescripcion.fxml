@@ -67,7 +67,7 @@
                         </Label>
                         <GridPane layoutX="14.0" layoutY="39.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="45.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="296.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="220.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="150.0" />
                           </columnConstraints>
                           <rowConstraints>
@@ -197,18 +197,17 @@
                         </GridPane>
                         <HBox layoutX="332.0" layoutY="823.0" spacing="20.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#manejarNuevoPaciente" prefHeight="50.0" prefWidth="80.0" styleClass="btnsjfx" text="Nuevo" />
-                              <Button mnemonicParsing="false" onAction="#manejarEdicionPaciente" prefHeight="50.0" prefWidth="80.0" styleClass="btnsjfx" text="Editar" />
-                              <Button mnemonicParsing="false" onAction="#manejarEliminarPaciente" prefHeight="50.0" prefWidth="80.0" style="-fx-background-color: #d55151;" styleClass="btnsjfx" text="Eliminar" />
+                              <Button mnemonicParsing="false" onAction="#manejarNuevoPaciente" prefHeight="40.0" prefWidth="80.0" styleClass="btnsjfx" text="Nuevo" />
+                              <Button mnemonicParsing="false" onAction="#manejarEdicionPaciente" prefHeight="40.0" prefWidth="80.0" styleClass="btnsjfx" text="Editar" />
+                              <Button mnemonicParsing="false" onAction="#manejarEliminarPaciente" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: #d55151;" styleClass="btnsjfx" text="Eliminar" />
                            </children>
                         </HBox>
                         <HBox layoutX="6.0" layoutY="823.0" spacing="30.0">
                            <children>
-                              <JFXButton onAction="#listarPacientes" prefHeight="50.0" prefWidth="80.0" styleClass="btnsjfx" text="Listar" textFill="#e8e0e0" />
-                              <JFXButton onAction="#listarPacientes" prefHeight="50.0" prefWidth="80.0" styleClass="btnsjfx" text="Limpiar" textFill="#e8e0e0" />
+                              <JFXButton onAction="#listarPacientes" prefHeight="40.0" prefWidth="80.0" styleClass="btnsjfx" text="Listar" textFill="#e8e0e0" />
+                              <JFXButton onAction="#listarPacientes" prefHeight="40.0" prefWidth="80.0" styleClass="btnsjfx" text="Limpiar" textFill="#e8e0e0" />
                            </children>
                         </HBox>
-                        <FontAwesomeIconView glyphName="HOME" glyphStyle="-fx-fill: #333645" layoutX="404.0" layoutY="32.85714340209961" onMouseClicked="#cargarHome" size="3em" AnchorPane.topAnchor="2.0" />
                         <Label fx:id="mensajeNuevoPac" alignment="CENTER" layoutX="459.0" layoutY="3.0" prefHeight="35.0" prefWidth="244.0">
                            <font>
                               <Font size="10.0" />
