@@ -2,6 +2,8 @@ package com.codedynamic.clinica.modelo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -20,6 +22,7 @@ public class FacturaTratamiento {
 	private StringProperty detalle;
 	private IntegerProperty total;
 	private StringProperty estado;
+	private List<FacturaTratamientoDetalle> detalleFactura = new ArrayList<>();
 	
 	public FacturaTratamiento() {
 		this((short) 0, null, null, null, null, null, 0, null);
@@ -125,4 +128,12 @@ public class FacturaTratamiento {
 	public final void setEstado(final String estado) {
 		this.estadoProperty().set(estado);
 	}
+	
+	public void addDetalle(FacturaTratamientoDetalle detalle) {
+		this.detalleFactura.add(detalle);
+	}
+
+	public List<FacturaTratamientoDetalle> getDetalleFactura() {
+		return detalleFactura;
+	}	
 }	

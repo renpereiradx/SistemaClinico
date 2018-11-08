@@ -51,7 +51,7 @@ public class PSQLProveedor {
 	private Proveedor insertarProveedor(Proveedor pv) throws ExcepcionGeneral{
 		Proveedor proveedor = null;
 		try {
-			conexion = new PSQLConexion().conectar();
+
 			sentencia = conexion.prepareStatement(INSERTAR);
 			sentencia.setString(1, pv.getNombre());
 			sentencia.setString(2, pv.getRuc());
