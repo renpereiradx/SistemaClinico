@@ -51,7 +51,6 @@ public class PSQLProveedor {
 	private Proveedor insertarProveedor(Proveedor pv) throws ExcepcionGeneral{
 		Proveedor proveedor = null;
 		try {
-
 			sentencia = conexion.prepareStatement(INSERTAR);
 			sentencia.setString(1, pv.getNombre());
 			sentencia.setString(2, pv.getRuc());
@@ -63,7 +62,6 @@ public class PSQLProveedor {
 				throw new ExcepcionGeneral("No se puedo insertar Proveedor");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return proveedor;

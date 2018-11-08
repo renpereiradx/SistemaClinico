@@ -107,7 +107,6 @@ public class FacturaTratamiento {
 	public final IntegerProperty totalProperty() {
 		return this.total;
 	}
-	
 
 	public final int getTotal() {
 		return this.totalProperty().get();

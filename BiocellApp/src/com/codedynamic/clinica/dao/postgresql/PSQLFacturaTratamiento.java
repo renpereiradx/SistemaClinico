@@ -12,7 +12,8 @@ import com.codedynamic.clinica.utilidades.UtilidadHora;
 
 public class PSQLFacturaTratamiento {
 	
-	private final String INSERTAR = "INSERT INTO factura_tratamientos(id_paciente, id_usuario, fecha, hora, detalles, total, estado) VALUES(?, ?, ?, ?, ?, ?, ?)";
+	private final String INSERTAR = "INSERT INTO factura_tratamientos(id_paciente, id_usuario, fecha, hora, detalles, total, estado) VALUES(?, ?, ?, ?, ?, ?, ?) "
+			+ "RETURNING id_facturat, id_paciente, id_usuario, fecha, hora, detalles, total, estado";
 	private final String MODIFICAR = "UPDATE factura_tratamientos SET detalles = ?, estado = ? WHERE id_facturat = ?";
 	private final String OBTENERPORID = "SELECT id_facturat, id_paciente, id_usuario, fecha, hora, detalles, total, estado FROM factura_tratamientos WHERE id_factura = ?";
 	
@@ -20,7 +21,10 @@ public class PSQLFacturaTratamiento {
 	private PreparedStatement sentencia;
 	private ResultSet resultado;
 	
-	public void insertar(FacturaTratamiento f) throws ExcepcionGeneral {
+	
+	
+	public FacturaTratamiento insertar(FacturaTratamiento f) throws ExcepcionGeneral {
+		FacturaTratamiento facturaTratamiento = null;
 		try { 
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(INSERTAR);
@@ -31,7 +35,10 @@ public class PSQLFacturaTratamiento {
 			sentencia.setString(5, f.getDetalle());
 			sentencia.setInt(6, f.getTotal());
 			sentencia.setString(7, f.getEstado());
-			if (sentencia.executeUpdate() == 0) {
+			resultado = sentencia.executeQuery();
+			if (resultado.next()) {
+				facturaTratamiento = convertir(resultado);
+			} else {
 				throw new ExcepcionGeneral("No se inserto ningun registro");
 			}
 		} catch (SQLException e) {
@@ -39,6 +46,7 @@ public class PSQLFacturaTratamiento {
 		} finally {
 			cerrarConexion();
 		}
+		return facturaTratamiento;
 	}
 	
 	public void modificar(FacturaTratamiento f) {

@@ -12,9 +12,13 @@ public class Tratamiento {
 	private IntegerProperty precio;
 	private StringProperty descripcion;
 	
+	/*
 	public Tratamiento() {
 		this((short) 0, null, 0, null);
 	}
+	*/
+	
+	public Tratamiento() {}
 	
 	public Tratamiento(short idTratamiento, String nombre, int precio, String descripcion) {
 		this.idTratamiento = new SimpleIntegerProperty(idTratamiento);
