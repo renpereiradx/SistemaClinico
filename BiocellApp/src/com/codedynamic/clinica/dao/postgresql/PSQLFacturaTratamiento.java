@@ -57,6 +57,17 @@ public class PSQLFacturaTratamiento {
 		}
 	}
 	
+	public FacturaTratamiento obtenerPorID(Short k) {
+		FacturaTratamiento facturaTratamiento = null;
+		return facturaTratamiento;
+	}
+	
+	private FacturaTratamiento convertir(ResultSet rs) throws SQLException {
+		FacturaTratamiento facturaTratamiento = new FacturaTratamiento();
+		facturaTratamiento.setIdFacturaT(rs.getShort("id_facturat"));
+		return facturaTratamiento;
+	}
+	
 	private void cerrarConexion() {
 		try {
 			if (resultado != null) {
