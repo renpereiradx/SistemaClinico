@@ -48,4 +48,9 @@ public class HomeControlador {
     	mainApp.mostrarProductoMenu();
     	mainApp.mostrarProductoPrincial();
     }
+    
+    @FXML private void seccionTratamiento() {
+    	mainApp.mostrarTratamientoFacutra();
+    	mainApp.mostrarTratamientoMenu();
+    }
 }

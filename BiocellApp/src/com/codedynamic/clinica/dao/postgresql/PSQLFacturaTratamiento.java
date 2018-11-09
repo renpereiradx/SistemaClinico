@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.codedynamic.clinica.excepciones.ExcepcionGeneral;
 import com.codedynamic.clinica.modelo.FacturaTratamiento;
+import com.codedynamic.clinica.modelo.Tratamiento;
 import com.codedynamic.clinica.utilidades.UtilidadFecha;
 import com.codedynamic.clinica.utilidades.UtilidadHora;
 
@@ -21,7 +23,17 @@ public class PSQLFacturaTratamiento {
 	private PreparedStatement sentencia;
 	private ResultSet resultado;
 	
-	
+	public FacturaTratamiento insertarFactura(List<Tratamiento> t, Short s, FacturaTratamiento f) {
+		FacturaTratamiento facturaTratamiento = null;
+		try {
+			facturaTratamiento = insertar(f);
+			PSQLFacturaTratamientoDetalle detalle = new PSQLFacturaTratamientoDetalle();
+			detalle.insertar(t, f, s);
+		} catch (ExcepcionGeneral e) {
+			e.printStackTrace();
+		}
+		return facturaTratamiento;
+	}
 	
 	public FacturaTratamiento insertar(FacturaTratamiento f) throws ExcepcionGeneral {
 		FacturaTratamiento facturaTratamiento = null;

@@ -26,6 +26,9 @@ import com.codedynamic.clinica.vista.productos.ProductoPrincipalControlador;
 import com.codedynamic.clinica.vista.productos.ProductoRegistroControlador;
 import com.codedynamic.clinica.vista.proveedores.ProveedorPrincipalControlador;
 import com.codedynamic.clinica.vista.proveedores.ProveedorRegistroControlador;
+import com.codedynamic.clinica.vista.tratamientos.TratamientoControlador;
+import com.codedynamic.clinica.vista.tratamientos.TratamientoMenuControlador;
+import com.codedynamic.clinica.vista.tratamientos.TratamientoRegistroControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoControlador;
 import com.codedynamic.clinica.vista.turno.SolicitudTurnoFechaControlador;
 import com.codedynamic.clinica.vista.turno.TurnoDescripcionControlador;
@@ -529,6 +532,64 @@ public class MainApp extends Application {
 			controlador.setStage(registroStage);
 			controlador.setProveedor(proveedor, accion);
 			registroStage.showAndWait();
+			return controlador.isOkClicked();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+    }
+    
+    public void mostrarTratamientoFacutra() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/tratamientos/TratamientoPrincipal.fxml"));
+			AnchorPane paneTratamiento = loader.load();
+			contenedorPrincipal.setCenter(paneTratamiento);;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarTratamientoMenu() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/tratamientos/TratamientoMenu.fxml"));
+			AnchorPane paneMenu = loader.load();
+			contenedorPrincipal.setLeft(paneMenu);
+			TratamientoMenuControlador controlador = loader.getController();
+			controlador.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public void mostrarTratamientos() {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/tratamientos/Tratamiento.fxml"));
+			AnchorPane paneTratamientos = loader.load();
+			contenedorPrincipal.setCenter(paneTratamientos);
+			TratamientoControlador controlador = loader.getController();
+			controlador.setMainApp(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    public boolean mostrarRegistroTratamiento(Tratamiento tratamiento) {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("vista/tratamientos/TratamientoRegistro.fxml"));
+			AnchorPane paneRegistro = loader.load();
+			Stage stageRegistro = new Stage();
+			stageRegistro.setTitle("REGISTRO DE TRATAMIENTOS");
+			stageRegistro.initOwner(primaryStage);
+			Scene scene = new Scene(paneRegistro);
+			stageRegistro.setScene(scene);
+			TratamientoRegistroControlador controlador = loader.getController();
+			controlador.setStage(stageRegistro);
+			controlador.setTratamiento(tratamiento);
+			stageRegistro.showAndWait();
 			return controlador.isOkClicked();
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class TratamientoRegistroControlador {
@@ -18,6 +19,7 @@ public class TratamientoRegistroControlador {
 	private JFXTextField descripcionField;
 	
 	private Tratamiento tratamiento;
+	private Stage stage;
 	private boolean okClicked = false;
 	
 	public void setTratamiento(Tratamiento tratamiento) {
@@ -35,6 +37,10 @@ public class TratamientoRegistroControlador {
 		}
 	}
 	
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
 	public boolean isOkClicked() {
 		return okClicked;
 	}
@@ -45,6 +51,22 @@ public class TratamientoRegistroControlador {
 	}
 	
 	@FXML
+	private void aceptar() {
+		if (validacionDatos()) {
+			tratamiento.setNombre(nombreField.getText());
+			tratamiento.setPrecio(Integer.parseInt(precioField.getText()));
+			if (descripcionField.getText().length() > 1 || descripcionField.getText() != null) {
+				tratamiento.setDescripcion(descripcionField.getText());
+			}
+			okClicked = true;
+			stage.close();
+		}
+	}
+	
+	@FXML
+	private void cancelar() {
+		stage.close();
+	}
 	
 	private boolean validacionDatos() {
 		String error = "";

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.codedynamic.clinica.dao.interfaces.TratamientoDAO;
@@ -78,12 +79,11 @@ public class PSQLTratamiento implements TratamientoDAO {
 
 	@Override
 	public Tratamiento obtenerPorID(Short k) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	public List<Tratamiento> obtenerPorNombre(String nombre) {
-		List<Tratamiento> listaTratamiento = null;
+		List<Tratamiento> listaTratamiento = new ArrayList<>();
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(OBTENERPORNOMBRE);
@@ -101,7 +101,7 @@ public class PSQLTratamiento implements TratamientoDAO {
 	}
 	
 	public List<Tratamiento> obtenerTodo() {
-		List<Tratamiento> listaTratamiento = null;
+		List<Tratamiento> listaTratamiento = new ArrayList<>();
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(OBTENERTODOS);

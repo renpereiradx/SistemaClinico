@@ -22,7 +22,7 @@ public class PSQLFacturaTratamientoDetalle {
 	private PreparedStatement sentencia;
 	private ResultSet resultado;
 	
-	public void insertar(List<Tratamiento> t, FacturaTratamiento f) throws ExcepcionGeneral {
+	public void insertar(List<Tratamiento> t, FacturaTratamiento f, Short sesiones) throws ExcepcionGeneral {
 		try {
 			conexion = new PSQLConexion().conectar();
 			sentencia = conexion.prepareStatement(INSERTAR);
@@ -30,11 +30,11 @@ public class PSQLFacturaTratamientoDetalle {
 				FacturaTratamientoDetalle detalle = new FacturaTratamientoDetalle();
 				detalle.setFacturaTratamiento(f);
 				detalle.setTratamiento(tratamiento);
-				//detalle.setSesiones(sesiones);
+				detalle.setSesiones(sesiones);
 				sentencia.setShort(1, (short) f.getIdFacturaT());
 				sentencia.setShort(2, (short) detalle.getTratamiento().getIdTratamiento());
 				sentencia.setShort(3, (short) detalle.getSesiones());
-				sentencia.setInt(4, detalle.getPrecio());
+				sentencia.setInt(4, detalle.getTratamiento().getPrecio());
 				f.addDetalle(detalle);
 			}
 		} catch (SQLException e) {

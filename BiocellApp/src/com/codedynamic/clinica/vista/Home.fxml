@@ -102,7 +102,7 @@
                         </HBox>
                         <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="230.0" spacing="70.0">
                            <children>
-                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" onAction="#seccionPaciente" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="TRATAMIENTOS" textAlignment="CENTER" textFill="#f8f8f8">
+                              <JFXButton alignment="TOP_CENTER" buttonType="RAISED" contentDisplay="TOP" graphicTextGap="30.0" onAction="#seccionTratamiento" prefHeight="180.0" prefWidth="180.0" styleClass="btnsjfx" text="TRATAMIENTOS" textAlignment="CENTER" textFill="#f8f8f8">
                                  <graphic>
                                     <FontAwesomeIconView fill="#f8f8f8" glyphName="HEARTBEAT" size="8em" />
                                  </graphic>
