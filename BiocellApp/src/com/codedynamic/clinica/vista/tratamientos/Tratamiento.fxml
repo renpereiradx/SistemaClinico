@@ -45,7 +45,7 @@
             <JFXTextField fx:id="nombreTratamiento" prefHeight="38.0" prefWidth="300.0" />
             <JFXButton onAction="#buscar" prefHeight="40.0" prefWidth="100.0" styleClass="btnsjfx" text="BUSCAR" />
             <JFXButton layoutX="330.0" layoutY="10.0" onAction="#listarTratamientos" prefHeight="40.0" prefWidth="100.0" styleClass="btnsjfx" text="LISTAR" />
-            <JFXButton layoutX="450.0" layoutY="10.0" onAction="#listarTratamientos" prefHeight="40.0" prefWidth="100.0" styleClass="btnsjfx" text="LIMPIAR" />
+            <JFXButton layoutX="450.0" layoutY="10.0" prefHeight="40.0" prefWidth="100.0" styleClass="btnsjfx" text="LIMPIAR" />
          </children>
       </HBox>
    </children>

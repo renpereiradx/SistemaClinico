@@ -24,17 +24,11 @@ public class TratamientoRegistroControlador {
 	
 	public void setTratamiento(Tratamiento tratamiento) {
 		this.tratamiento = tratamiento;
-		if (tratamiento != null) {
-			if (!(tratamiento.getNombre().isEmpty() && tratamiento.getNombre() == null)) {
+			if (tratamiento.getNombre() != null) {
 				nombreField.setText(tratamiento.getNombre());
-			}
-			if (tratamiento.getPrecio() != 0) {
 				precioField.setText(Integer.toString(tratamiento.getPrecio()));
-			}
-			if (tratamiento.getDescripcion().length() > 0 && tratamiento.getDescripcion() != null) {
 				descripcionField.setText(tratamiento.getDescripcion());
 			}
-		}
 	}
 	
 	public void setStage(Stage stage) {

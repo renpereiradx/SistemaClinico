@@ -45,7 +45,6 @@ public class ProductoRegistroControlador {
 	
 	@FXML private void initialize() {
 		psqlCategoriProducto = new PSQLCategoriaProducto();
-		//List<CategoriaProducto> listaCategoria = new ArrayList(psqlCategoriProducto.obtenerLista());
 		for (CategoriaProducto categoriaProducto : psqlCategoriProducto.obtenerLista()) {
 			categoriaProductoList.add(categoriaProducto.getCategoria());
 		}
